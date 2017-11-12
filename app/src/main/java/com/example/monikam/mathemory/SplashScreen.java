@@ -30,7 +30,7 @@ public class SplashScreen extends AppCompatActivity {
 
                     s.addAnimation(fadeInAnimation);
                     s.addAnimation(fadeOutAnimation);
-                    s.setDuration(4000);
+                    s.setDuration(3000);
 
                     logo.startAnimation(s);
                     logo.setVisibility(View.INVISIBLE);
