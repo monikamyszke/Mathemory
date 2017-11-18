@@ -1,13 +1,15 @@
 package com.example.monikam.mathemory;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
+import java.util.Hashtable;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,22 +24,43 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+        ImageButton cat1 = (ImageButton) findViewById(R.id.cat1);
+        cat1.setEnabled(true);
+
         ImageButton cat2 = (ImageButton) findViewById(R.id.cat2);
-        cat2.setEnabled(false);
+        cat2.setEnabled(true);
 
         ImageButton cat3 = (ImageButton) findViewById(R.id.cat3);
-        cat3.setEnabled(false);
+        cat3.setEnabled(true);
 
         ImageButton cat4 = (ImageButton) findViewById(R.id.cat4);
-        cat4.setEnabled(false);
+        cat4.setEnabled(true);
+
+        final Hashtable<ImageButton, String> categories = new Hashtable<ImageButton, String> ();
+            categories.put(cat1, "Parzystość liczb");
+            categories.put(cat2, "Podzielność liczb");
+            categories.put(cat3, "Liczby pierwsze i złożone");
+            categories.put(cat4, "Ułamki właściwe i niewłaściwe");
+
+        // zdarzenie po wybraniu kategorii
+        for(final ImageButton k : categories.keySet()){
+            k.setOnClickListener(new View.OnClickListener() { // klasa anonimowa
+                @Override   // implementacja metody z interfejsu OnClickListener
+                public void onClick(View v) {
+                    Intent i = new Intent(MainActivity.this, LevelsMenu.class);
+                    i.putExtra("categoryName", categories.get(k)); //przesłanie nazwy kategorii do następnej aktywności
+            startActivity(i);
+        }
+    });
+        }
 
     }
-
 
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
+
 }
 
 

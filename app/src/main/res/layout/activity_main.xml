@@ -14,10 +14,11 @@
         android:id="@+id/cat1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="buttonClick"
         android:background="@null"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="58dp"
         app:srcCompat="@drawable/cat1"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/textView3"
         android:layout_alignStart="@+id/cat3" />
 
     <ImageButton
@@ -25,6 +26,7 @@
         android:src="@drawable/cat2_selector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="buttonClick"
         android:background="@null"
         android:layout_marginEnd="33dp"
         android:layout_alignTop="@+id/cat1"
@@ -35,6 +37,7 @@
         android:src="@drawable/cat3_selector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="buttonClick"
         android:background="@null"
         android:layout_marginTop="72dp"
         android:layout_below="@+id/cat1"
@@ -46,6 +49,7 @@
         android:src="@drawable/cat4_selector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="buttonClick"
         android:background="@null"
         android:layout_alignTop="@+id/cat3"
         android:layout_alignStart="@+id/cat2" />
