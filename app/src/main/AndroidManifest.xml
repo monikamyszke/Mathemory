@@ -25,6 +25,15 @@
         </activity>
         <activity
             android:name=".LevelsMenu"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".FourFieldsGame"
+            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".SixFieldsGame"
+            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".NineFieldsGame"
             android:theme="@style/AppTheme"/>
     </application>
 

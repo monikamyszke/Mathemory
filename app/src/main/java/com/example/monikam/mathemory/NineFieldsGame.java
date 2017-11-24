@@ -1,15 +1,13 @@
 package com.example.monikam.mathemory;
 
 import android.content.Context;
-import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TextView;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class LevelsMenu extends AppCompatActivity {
+public class NineFieldsGame extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,12 +17,9 @@ public class LevelsMenu extends AppCompatActivity {
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );
-        setContentView(R.layout.activity_levels_menu);
-
-        String s = getIntent().getStringExtra("categoryName");
-        TextView catName = (TextView) findViewById(R.id.cat_name);
-        catName.setText(s);
+        setContentView(R.layout.activity_nine_fields_game);
     }
+
 
     @Override
     protected void attachBaseContext(Context newBase) {
