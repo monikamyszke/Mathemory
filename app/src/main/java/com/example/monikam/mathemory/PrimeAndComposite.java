@@ -1,8 +1,12 @@
+package com.example.monikam.mathemory;
+
+import com.example.monikam.mathemory.CategoryClass;
+
 /**
  * Created by MonikaM on 2017-11-24.
  */
 
-class Divisibility extends CategoryClass {
+class PrimeAndComposite extends CategoryClass {
     @Override
     public int[] generateNumbers(int fields_num, int curr_level) {
         return new int[0];

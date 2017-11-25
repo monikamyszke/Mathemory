@@ -1,3 +1,10 @@
+package com.example.monikam.mathemory;
+
+import com.example.monikam.mathemory.Divisibility;
+import com.example.monikam.mathemory.Fractions;
+import com.example.monikam.mathemory.Parity;
+import com.example.monikam.mathemory.PrimeAndComposite;
+
 /**
  * Created by MonikaM on 2017-11-24.
  */

@@ -1,6 +1,9 @@
+package com.example.monikam.mathemory;
+
 /**
  * Created by MonikaM on 2017-11-23.
  */
+
 
 abstract class CategoryClass {
 

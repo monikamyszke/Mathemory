@@ -6,12 +6,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+
+import java.io.Serializable;
 import java.util.Hashtable;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity {
+
+    //Game game = new Game();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,15 +47,16 @@ public class MainActivity extends AppCompatActivity {
             categories.put(cat4, "Ułamki właściwe i niewłaściwe");
 
         // zdarzenie po wybraniu kategorii
-        for(final ImageButton k : categories.keySet()){
+        for(final ImageButton k : categories.keySet()) {
             k.setOnClickListener(new View.OnClickListener() { // klasa anonimowa
-                @Override   // implementacja metody z interfejsu OnClickListener
+                @Override                                     // implementacja metody z interfejsu OnClickListener
                 public void onClick(View v) {
-                    Intent i = new Intent(MainActivity.this, LevelsMenu.class);
+                    Intent i = new Intent(getApplicationContext(), LevelsMenu.class);
                     i.putExtra("categoryName", categories.get(k)); //przesłanie nazwy kategorii do następnej aktywności
-            startActivity(i);
-        }
-    });
+                    //i.putExtra("game", (Serializable) game);
+                    startActivity(i);
+                }
+            });
         }
 
     }

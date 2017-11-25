@@ -17,27 +17,25 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        final Context currActivity = this;
-
         Thread mySplashScreen = new Thread(){
             public void run(){
                 try {
-                    ImageView logo = (ImageView) findViewById(R.id.imageView);
-                    Animation fadeInAnimation = AnimationUtils.loadAnimation(currActivity, R.anim.fade_in);
-                    Animation fadeOutAnimation = AnimationUtils.loadAnimation(currActivity, R.anim.fade_out);
+                        ImageView logo = (ImageView) findViewById(R.id.imageView);
+                        Animation fadeInAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
+                        Animation fadeOutAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
 
-                    AnimationSet s = new AnimationSet(false);
+                        AnimationSet s = new AnimationSet(false);
 
-                    s.addAnimation(fadeInAnimation);
-                    s.addAnimation(fadeOutAnimation);
-                    s.setDuration(3000);
+                        s.addAnimation(fadeInAnimation);
+                        s.addAnimation(fadeOutAnimation);
+                        s.setDuration(3000);
 
-                    logo.startAnimation(s);
-                    logo.setVisibility(View.INVISIBLE);
+                        logo.startAnimation(s);
+                        logo.setVisibility(View.INVISIBLE);
 
-                    while (s.hasEnded() == false) {
-                        sleep(10);
-                    }
+                       while (s.hasEnded() == false) {
+                          sleep(10);
+                   }
 
                     Intent i = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(i);
@@ -48,6 +46,7 @@ public class SplashScreen extends AppCompatActivity {
                 }
             }
         };
+
         mySplashScreen.start();
     }
 }
