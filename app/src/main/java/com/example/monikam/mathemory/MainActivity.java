@@ -7,15 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import java.io.Serializable;
 import java.util.Hashtable;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity {
-
-    //Game game = new Game();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );
+
+        Game.initGame();
 
         setContentView(R.layout.activity_main);
 
@@ -53,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent i = new Intent(getApplicationContext(), LevelsMenu.class);
                     i.putExtra("categoryName", categories.get(k)); //przesłanie nazwy kategorii do następnej aktywności
-                    //i.putExtra("game", (Serializable) game);
                     startActivity(i);
                 }
             });

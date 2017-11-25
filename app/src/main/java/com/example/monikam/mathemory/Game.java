@@ -10,15 +10,46 @@ import com.example.monikam.mathemory.PrimeAndComposite;
  */
 
 class Game {
-    public Parity cat1;
-    public Divisibility cat2;
-    public PrimeAndComposite cat3;
-    public Fractions cat4;
 
-    public Game(){
-        cat1 = new Parity();
-        cat2 = new Divisibility();
-        cat3 = new PrimeAndComposite();
-        cat4 = new Fractions();
+    private static Game game;
+
+    public Parity parity;
+    public Divisibility divisibility;
+    public PrimeAndComposite primeAndComposite;
+    public Fractions fractions;
+
+    public static void initGame(){ // obiekt klasy Game może być utworzony tylko 1 raz
+        if (game == null){
+            game = new Game();
+        }
+    }
+// obiekt klasy Game może być utworzony tylko wewnątrz tej klasy
+    private Game(){
+        this.parity= new Parity();
+        this.divisibility = new Divisibility();
+        this.primeAndComposite = new PrimeAndComposite();
+        this.fractions= new Fractions();
+    }
+
+    public static CategoryClass getCategory(String category){
+        if(category.equals("Parzystość liczb")){
+            return game.parity;
+        }
+        else if(category.equals("Podzielność liczb")){
+            return game.divisibility;
+        }
+        else if(category.equals("Liczby pierwsze i złożone")){
+            return game.primeAndComposite;
+        }
+        else if(category.equals("Ułamki właściwe i niewłaściwe")){
+            return game.fractions;
+        }
+        else
+            return null;
+
+    }
+
+    public static Game getInstance(){
+        return game;
     }
 }
