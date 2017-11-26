@@ -33,7 +33,7 @@ public class LevelsMenu extends AppCompatActivity {
 
         final List<Button> levelButtons = new ArrayList<Button>(); // lista z poziomami 1-9
 
-        for(int i = 1; i < 10; i++) {
+        for(int i = 1; i < 11; i++) {
             int id = getResources().getIdentifier("lev"+i, "id", getPackageName());
             Button b = (Button) findViewById(id);
             levelButtons.add(b);
@@ -47,10 +47,10 @@ public class LevelsMenu extends AppCompatActivity {
                         Intent i = null;
 
                         // przyporządkowanie poziomom odpowiednich plansz
-                        if (levelButtons.indexOf(v) > 0 && levelButtons.indexOf(v) < 3) {
+                        if (levelButtons.indexOf(v) > 0 && levelButtons.indexOf(v) < 4) {
                             i = new Intent(getApplicationContext(), FourFieldsGame.class);
                         }
-                        else if (levelButtons.indexOf(v) > 2 && levelButtons.indexOf(v) < 6) {
+                        else if (levelButtons.indexOf(v) > 3 && levelButtons.indexOf(v) < 7) {
                             i = new Intent(getApplicationContext(), SixFieldsGame.class);
                         }
                         else {
