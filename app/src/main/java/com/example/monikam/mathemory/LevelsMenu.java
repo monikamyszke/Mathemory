@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +15,6 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class LevelsMenu extends AppCompatActivity {
-
-    public static final int[] levels = {R.id.lev1, R.id.lev2, R.id.lev3, R.id.lev4, R.id.lev5,
-                                             R.id.lev6, R.id.lev7, R.id.lev8, R.id.lev9};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,15 +27,14 @@ public class LevelsMenu extends AppCompatActivity {
 
         setContentView(R.layout.activity_levels_menu);
 
-        String s = getIntent().getStringExtra("categoryName");
-        TextView catName = (TextView) findViewById(R.id.cat_name);
-        catName.setText(s); // wyświetlenie nazwy kategorii na górze ekranu
-
-        CategoryClass category = Game.getCategory(s);
+        final String categoryName = getIntent().getStringExtra("categoryName");
+        TextView cat_name = (TextView) findViewById(R.id.cat_name);
+        cat_name.setText(categoryName); // wyświetlenie nazwy kategorii na górze ekranu
 
         final List<Button> levelButtons = new ArrayList<Button>(); // lista z poziomami 1-9
 
-        for(int id : levels) {
+        for(int i = 1; i < 10; i++) {
+            int id = getResources().getIdentifier("lev"+i, "id", getPackageName());
             Button b = (Button) findViewById(id);
             levelButtons.add(b);
         }
@@ -50,6 +45,7 @@ public class LevelsMenu extends AppCompatActivity {
                 public void onClick(View v) {
                     
                         Intent i = null;
+
                         // przyporządkowanie poziomom odpowiednich plansz
                         if (levelButtons.indexOf(v) > 0 && levelButtons.indexOf(v) < 3) {
                             i = new Intent(getApplicationContext(), FourFieldsGame.class);
@@ -60,6 +56,9 @@ public class LevelsMenu extends AppCompatActivity {
                         else {
                             i = new Intent(getApplicationContext(), NineFieldsGame.class);
                         }
+
+                        i.putExtra("categoryName", categoryName); // przesłanie informacji o wybranej kategorii
+                        i.putExtra("whichLevel", levelButtons.indexOf(v)+1); // przesłanie informacji który to poziom
                         startActivity(i);
 
                 }

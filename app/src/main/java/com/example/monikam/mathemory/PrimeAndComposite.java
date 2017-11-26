@@ -8,8 +8,8 @@ import com.example.monikam.mathemory.CategoryClass;
 
 class PrimeAndComposite extends CategoryClass {
     @Override
-    public int[] generateNumbers(int fields_num, int curr_level) {
-        return new int[0];
+    public String[] generateNumbers(int fields_num, int curr_level) {
+        return new String[0];
     }
 
     @Override

@@ -7,7 +7,7 @@ package com.example.monikam.mathemory;
 
 abstract class CategoryClass {
 
-    public abstract int[] generateNumbers(int fields_num, int curr_level); // funkcja generująca liczby dla plansz
+    public abstract String[] generateNumbers(int fields_num, int curr_level); // funkcja generująca liczby dla plansz
 
     public abstract boolean check(int sel_field); // funkcja sprawdzająca poprawność
 }

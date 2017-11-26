@@ -9,17 +9,10 @@ import java.util.Random;
  */
 
 class Parity extends CategoryClass {
+
     @Override
-    public int[] generateNumbers(int fields_num, int curr_level) {
-
-        int[] numbers = new int[fields_num];
-        Random gen = new Random();
-
-        for(int i = 0; i < fields_num; i++){
-            numbers[i] = gen.nextInt(10);
-        }
-
-        return numbers;
+    public String[] generateNumbers(int fields_num, int curr_level) {
+        return new String[0];
     }
 
     @Override

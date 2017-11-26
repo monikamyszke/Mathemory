@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         ImageButton cat4 = (ImageButton) findViewById(R.id.cat4);
         cat4.setEnabled(true);
 
+        // przypisanie przyciskom odpowiednich nazw kategorii
         final Hashtable<ImageButton, String> categories = new Hashtable<ImageButton, String> ();
             categories.put(cat1, "Parzystość liczb");
             categories.put(cat2, "Podzielność liczb");
