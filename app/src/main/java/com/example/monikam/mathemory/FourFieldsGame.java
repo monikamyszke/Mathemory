@@ -12,7 +12,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class FourFieldsGame extends AppCompatActivity {
 
-    int fieldsNumber = 4;
+    int  fieldsNumber = 4;
     String[] sGenerated; // tablica wygenerowanych wartości
 
     @Override
@@ -32,6 +32,13 @@ public class FourFieldsGame extends AppCompatActivity {
         CategoryClass category = Game.getCategory(categoryName); // pobranie właściwego obiektu na podstawie nazwy kategorii
 
         sGenerated = category.generateNumbers(fieldsNumber, whichLevel);
+
+        for(int i = 1; i < (fieldsNumber + 1); i++) {
+            int id = getResources().getIdentifier("f"+i, "id", getPackageName());
+            Button b = (Button) findViewById(id);
+            b.setText(sGenerated[i-1]);
+        }
+
     }
 
 

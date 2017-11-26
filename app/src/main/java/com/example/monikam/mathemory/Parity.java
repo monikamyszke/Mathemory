@@ -10,9 +10,21 @@ import java.util.Random;
 
 class Parity extends CategoryClass {
 
+    private int[] generated;
+
     @Override
     public String[] generateNumbers(int fields_num, int curr_level) {
-        return new String[0];
+
+        generated = new int[fields_num];
+        String[] sGenerated = new String[fields_num];
+        Random r = new Random();
+
+        for(int i = 0; i < fields_num; i++){
+            generated[i] = r.nextInt(10);
+            sGenerated[i] = String.valueOf(generated[i]);
+        }
+
+        return sGenerated;
     }
 
     @Override
