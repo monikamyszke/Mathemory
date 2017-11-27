@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -11,6 +12,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class SixFieldsGame extends AppCompatActivity {
 
     int fieldsNumber = 6;
+    String instruction;
     String[] sGenerated;
 
     @Override
@@ -28,6 +30,10 @@ public class SixFieldsGame extends AppCompatActivity {
         int whichLevel = getIntent().getIntExtra("whichLevel", 0);
 
         CategoryClass category = Game.getCategory(categoryName);
+
+        instruction = category.getInstruction(whichLevel);
+        TextView task = (TextView) findViewById(R.id.task);
+        task.setText(instruction);
 
         sGenerated = category.generateNumbers(fieldsNumber, whichLevel);
 

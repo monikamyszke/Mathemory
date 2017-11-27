@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -13,6 +14,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class FourFieldsGame extends AppCompatActivity {
 
     int  fieldsNumber = 4;
+    String instruction; // polecenie
     String[] sGenerated; // tablica wygenerowanych wartości
 
     @Override
@@ -30,6 +32,10 @@ public class FourFieldsGame extends AppCompatActivity {
         int whichLevel = getIntent().getIntExtra("whichLevel", 0);
 
         CategoryClass category = Game.getCategory(categoryName); // pobranie właściwego obiektu na podstawie nazwy kategorii
+
+        instruction = category.getInstruction(whichLevel); // pobranie polecenia na podstawie poziomu
+        TextView task = (TextView) findViewById(R.id.task);
+        task.setText(instruction);
 
         sGenerated = category.generateNumbers(fieldsNumber, whichLevel);
 
