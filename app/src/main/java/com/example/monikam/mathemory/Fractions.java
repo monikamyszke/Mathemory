@@ -8,10 +8,10 @@ import com.example.monikam.mathemory.CategoryClass;
 
 class Fractions extends CategoryClass {
 
+    private String instruction;
+
     @Override
     public String getInstruction(int curr_level) {
-
-        String instruction;
 
         if (curr_level == 3 || curr_level == 6 || curr_level == 9) {
             instruction = "Wybierz ułamki niewłaściwe:";
@@ -25,7 +25,7 @@ class Fractions extends CategoryClass {
 
     @Override
     public String[] generateNumbers(int fields_num, int curr_level) {
-        return new String[0];
+        return new String[fields_num];
     }
 
     @Override

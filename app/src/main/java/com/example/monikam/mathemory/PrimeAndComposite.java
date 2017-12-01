@@ -8,10 +8,10 @@ import com.example.monikam.mathemory.CategoryClass;
 
 class PrimeAndComposite extends CategoryClass {
 
+    private String instruction;
+
     @Override
     public String getInstruction(int curr_level) {
-
-        String instruction;
 
         if (curr_level == 3 || curr_level == 6 || curr_level == 9) {
             instruction = "Wybierz liczby złożone:";

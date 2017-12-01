@@ -37,9 +37,9 @@ public class FourFieldsGame extends AppCompatActivity {
         TextView task = (TextView) findViewById(R.id.task);
         task.setText(instruction);
 
-        sGenerated = category.generateNumbers(fieldsNumber, whichLevel);
+        sGenerated = category.generateNumbers(fieldsNumber, whichLevel); // wygenerowanie liczb
 
-        for(int i = 1; i < (fieldsNumber + 1); i++) {
+        for (int i = 1; i < (fieldsNumber + 1); i++) {
             int id = getResources().getIdentifier("f"+i, "id", getPackageName());
             Button b = (Button) findViewById(id);
             b.setText(sGenerated[i-1]);
