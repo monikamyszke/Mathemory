@@ -1,12 +1,14 @@
 package com.example.monikam.mathemory;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -16,6 +18,7 @@ public class FourFieldsGame extends AppCompatActivity {
     int  fieldsNumber = 4;
     String instruction; // polecenie
     String[] sGenerated; // tablica wygenerowanych wartości
+    List<Button> buttons = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +45,26 @@ public class FourFieldsGame extends AppCompatActivity {
         for (int i = 1; i < (fieldsNumber + 1); i++) {
             int id = getResources().getIdentifier("f"+i, "id", getPackageName());
             Button b = (Button) findViewById(id);
+            buttons.add(b);
             b.setText(sGenerated[i-1]);
+            b.setEnabled(false);
         }
+
+    }
+
+    protected void onResume(){
+        super.onResume();
+
+        // ukrycie liczb z pól planszy po upłynięciu czasu
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                for (Button b : buttons) {
+                        b.setEnabled(true);
+                        b.setText(null);
+                }
+            }
+        }, 4000);
 
     }
 
