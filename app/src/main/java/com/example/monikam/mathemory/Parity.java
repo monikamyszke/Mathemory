@@ -12,7 +12,6 @@ class Parity extends CategoryClass {
     private int[] generated;
     private String instruction;
     private static final int multiplier = 10;
-    private int counter; // zmienna do zliczania liczb spełniających warunek zadania
 
     @Override
     public String getInstruction(int curr_level) {
@@ -34,7 +33,9 @@ class Parity extends CategoryClass {
         String[] sGenerated = new String[fields_num];
         Set<Integer> numbers = new HashSet<>(); // zbiór pomocniczy do przechowywania i porównywania wylosowanych liczb
 
-            do {
+        int counter; // zmienna do zliczania liczb spełniających warunek zadania
+
+        do {
                 numbers.clear();
                 counter = 0;
 
@@ -56,13 +57,13 @@ class Parity extends CategoryClass {
                     // zliczanie liczb spełniających warunek zadania
                     if(instruction.equals("Wybierz liczby parzyste:")){
                         if ((generated[i]) % 2 == 0) {
-                            counter++;
+                            counter ++;
                         }
                     }
 
                     else{
                         if ((generated[i]) % 2 != 0) {
-                            counter++;
+                            counter ++;
                         }
                     }
 
@@ -77,6 +78,18 @@ class Parity extends CategoryClass {
     @Override
     public boolean check(int sel_field) {
 
+        if(instruction.equals("Wybierz liczby parzyste:")) {
+            if (generated[sel_field] %2 == 0) {
+                return true;
+            }
+        }
+        else {
+            if (generated[sel_field] % 2 != 0) {
+                return true;
+            }
+        }
+
         return false;
     }
 }
+
