@@ -13,35 +13,35 @@ class Game {
 
     private static Game game;
 
-    public Parity parity;
-    public Divisibility divisibility;
-    public PrimeAndComposite primeAndComposite;
-    public Fractions fractions;
+    private Parity parity;
+    private Divisibility divisibility;
+    private PrimeAndComposite primeAndComposite;
+    private Fractions fractions;
 
-    public static void initGame(){ // obiekt klasy Game może być utworzony tylko 1 raz
-        if (game == null){
+    static void initGame() { // obiekt klasy Game może być utworzony tylko 1 raz
+        if (game == null) {
             game = new Game();
         }
     }
 // obiekt klasy Game może być utworzony tylko wewnątrz tej klasy
-    private Game(){
-        this.parity= new Parity();
+    private Game() {
+        this.parity = new Parity();
         this.divisibility = new Divisibility();
         this.primeAndComposite = new PrimeAndComposite();
-        this.fractions= new Fractions();
+        this.fractions = new Fractions();
     }
 
-    public static CategoryClass getCategory(String category){
-        if(category.equals("Parzystość liczb")){
+    static CategoryClass getCategory(String category) {
+        if (category.equals("Parzystość liczb")) {
             return game.parity;
         }
-        else if(category.equals("Podzielność liczb")){
+        else if (category.equals("Podzielność liczb")) {
             return game.divisibility;
         }
-        else if(category.equals("Liczby pierwsze i złożone")){
+        else if (category.equals("Liczby pierwsze i złożone")) {
             return game.primeAndComposite;
         }
-        else if(category.equals("Ułamki właściwe i niewłaściwe")){
+        else if (category.equals("Ułamki właściwe i niewłaściwe")) {
             return game.fractions;
         }
         else
@@ -49,7 +49,7 @@ class Game {
 
     }
 
-    public static Game getInstance(){
+    public static Game getInstance() {
         return game;
     }
 }

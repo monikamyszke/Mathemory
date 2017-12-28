@@ -16,7 +16,7 @@ class Fractions extends CategoryClass {
         if (curr_level == 3 || curr_level == 6 || curr_level == 9) {
             instruction = "Wybierz ułamki niewłaściwe:";
         }
-        else{
+        else {
             instruction = "Wybierz ułamki właściwe:";
         }
 

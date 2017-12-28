@@ -17,7 +17,7 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         Thread mySplashScreen = new Thread(){
-            public void run(){
+            public void run() {
                 try {
                         ImageView logo = (ImageView) findViewById(R.id.imageView);
                         Animation fadeInAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
@@ -32,7 +32,7 @@ public class SplashScreen extends AppCompatActivity {
                         logo.startAnimation(s);
                         logo.setVisibility(View.INVISIBLE);
 
-                       while (s.hasEnded() == false) {
+                       while (!s.hasEnded()) {
                           sleep(10);
                    }
 

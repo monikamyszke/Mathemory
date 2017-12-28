@@ -43,10 +43,10 @@ class Parity extends CategoryClass {
 
                     // pętla odpowiadająca za niepowtarzalność losowanych liczb
                     do {
-                        if(curr_level == 1){
+                        if (curr_level == 1) {
                             generated[i] = (int) (Math.random() * (multiplier * (curr_level + fields_num) - multiplier) + 1);
                         }
-                        else{
+                        else {
                             generated[i] = (int) (Math.random() * (multiplier * curr_level - multiplier) + 1);
                         }
                     }
@@ -55,13 +55,13 @@ class Parity extends CategoryClass {
                     numbers.add(generated[i]);
 
                     // zliczanie liczb spełniających warunek zadania
-                    if(instruction.equals("Wybierz liczby parzyste:")){
+                    if (instruction.equals("Wybierz liczby parzyste:")) {
                         if ((generated[i]) % 2 == 0) {
                             counter ++;
                         }
                     }
 
-                    else{
+                    else {
                         if ((generated[i]) % 2 != 0) {
                             counter ++;
                         }
@@ -78,7 +78,7 @@ class Parity extends CategoryClass {
     @Override
     public boolean check(int sel_field) {
 
-        if(instruction.equals("Wybierz liczby parzyste:")) {
+        if (instruction.equals("Wybierz liczby parzyste:")) {
             if (generated[sel_field] %2 == 0) {
                 return true;
             }

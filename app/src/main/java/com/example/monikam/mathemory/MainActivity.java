@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             categories.put(cat4, "Ułamki właściwe i niewłaściwe");
 
         // zdarzenie po wybraniu kategorii
-        for(final ImageButton k : categories.keySet()) {
+        for (final ImageButton k : categories.keySet()) {
             k.setOnClickListener(new View.OnClickListener() { // klasa anonimowa
                 @Override                                     // implementacja metody z interfejsu OnClickListener
                 public void onClick(View v) {

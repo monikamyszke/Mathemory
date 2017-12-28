@@ -13,7 +13,7 @@ class Divisibility extends CategoryClass {
     @Override
     public String getInstruction(int curr_level) {
 
-        if (curr_level == 3 || curr_level == 6 || curr_level ==9){
+        if (curr_level == 3 || curr_level == 6 || curr_level == 9){
             instruction = "Wybierz liczby podzielne przez 5:";
         }
         else {

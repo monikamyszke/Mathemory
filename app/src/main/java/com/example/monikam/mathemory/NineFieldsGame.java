@@ -86,13 +86,14 @@ public class NineFieldsGame extends AppCompatActivity {
                     if (whichLevel != 1) {
                         if (correct) {
                             b.setText(sGenerated[buttons.indexOf(b)]);
-                        } else {
+                        }
+                        else {
                             vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                             vib.vibrate(250);
                         }
                     }
                     else {
-                        if (!correct){
+                        if (!correct) {
                             vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                             vib.vibrate(250);
                         }

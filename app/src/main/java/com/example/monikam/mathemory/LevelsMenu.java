@@ -31,15 +31,15 @@ public class LevelsMenu extends AppCompatActivity {
         TextView cat_name = (TextView) findViewById(R.id.cat_name);
         cat_name.setText(categoryName); // wyświetlenie nazwy kategorii na górze ekranu
 
-        final List<Button> levelButtons = new ArrayList<Button>(); // lista z poziomami 1-9
+        final List<Button> levelButtons = new ArrayList<Button>(); // lista z poziomami 1-10
 
-        for(int i = 1; i < 11; i++) {
+        for (int i = 1; i < 11; i++) {
             int id = getResources().getIdentifier("lev"+i, "id", getPackageName());
             Button b = (Button) findViewById(id);
             levelButtons.add(b);
         }
 
-        for(Button b : levelButtons) {
+        for (Button b : levelButtons) {
             b.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

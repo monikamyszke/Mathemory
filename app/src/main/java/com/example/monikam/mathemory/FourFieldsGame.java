@@ -46,6 +46,7 @@ public class FourFieldsGame extends AppCompatActivity {
 
         sGenerated = category.generateNumbers(fieldsNumber, whichLevel); // wygenerowanie liczb
 
+        // ustawienie pól z liczbami
         for (int i = 1; i < (fieldsNumber + 1); i++) {
             int id = getResources().getIdentifier("f"+i, "id", getPackageName());
             Button b = (Button) findViewById(id);
