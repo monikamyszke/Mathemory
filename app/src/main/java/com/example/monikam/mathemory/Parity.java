@@ -1,17 +1,14 @@
 package com.example.monikam.mathemory;
 
+import android.util.ArrayMap;
+
 import java.util.HashSet;
 import java.util.Set;
-
-/**
- * Created by MonikaM on 2017-11-24.
- */
 
 class Parity extends CategoryClass {
 
     private int[] generated;
     private String instruction;
-    private static final int multiplier = 10;
 
     @Override
     public String getInstruction(int curr_level) {
@@ -32,6 +29,7 @@ class Parity extends CategoryClass {
         generated = new int[fields_num];
         String[] sGenerated = new String[fields_num];
         Set<Integer> numbers = new HashSet<>(); // zbiór pomocniczy do przechowywania i porównywania wylosowanych liczb
+        ArrayMap<Integer, Integer> fractions = new ArrayMap<>();
 
         int counter; // zmienna do zliczania liczb spełniających warunek zadania
 
@@ -43,11 +41,12 @@ class Parity extends CategoryClass {
 
                     // pętla odpowiadająca za niepowtarzalność losowanych liczb
                     do {
+                        int multiplier = 10;
                         if (curr_level == 1) {
-                            generated[i] = (int) (Math.random() * (multiplier * (curr_level + fields_num) - multiplier) + 1);
+                            generated[i] = (int) (Math.random() * (multiplier * (curr_level + fields_num) + 1));
                         }
                         else {
-                            generated[i] = (int) (Math.random() * (multiplier * curr_level - multiplier) + 1);
+                            generated[i] = (int) (Math.random() * ((multiplier * curr_level - multiplier) + 1));
                         }
                     }
                     while (numbers.contains(generated[i]));

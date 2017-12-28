@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,6 +15,7 @@ import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import uk.co.chrisjenx.calligraphy.TypefaceUtils;
 
 public class SixFieldsGame extends AppCompatActivity {
 
@@ -50,6 +52,9 @@ public class SixFieldsGame extends AppCompatActivity {
             int id = getResources().getIdentifier("f"+i, "id", getPackageName());
             Button b = (Button) findViewById(id);
             buttons.add(b);
+            if (categoryName.equals("Ułamki właściwe i niewłaściwe")) {
+                b.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 30);
+            }
             b.setText(sGenerated[i-1]);
             b.setEnabled(false);
         }
