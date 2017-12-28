@@ -1,6 +1,7 @@
 package com.example.monikam.mathemory;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +26,7 @@ public class SixFieldsGame extends AppCompatActivity {
     List<Button> buttons = new ArrayList<>();
     CategoryClass category;
     Vibrator vib;
+    MediaPlayer sound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +83,18 @@ public class SixFieldsGame extends AppCompatActivity {
                     correct = category.check(buttons.indexOf(b));
                     if (correct) {
                         b.setText(sGenerated[buttons.indexOf(b)]);
+                        sound = MediaPlayer.create(getApplicationContext(), R.raw.correct_answer);
+                        sound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                            @Override
+                            public void onCompletion(MediaPlayer mp) {
+                                if(mp != null) {
+                                    mp.release();
+                                    sound = null;
+                                }
+                            }
+                        });
+                        sound.start();
+                        b.setEnabled(false);
                     }
                     else {
                         vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
