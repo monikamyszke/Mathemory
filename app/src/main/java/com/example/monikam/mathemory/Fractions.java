@@ -7,6 +7,7 @@ class Fractions extends CategoryClass {
 
     private String instruction;
     private List<IntegerPair> fractions;
+    private int counter;
 
     @Override
     public String getInstruction(int curr_level) {
@@ -26,8 +27,6 @@ class Fractions extends CategoryClass {
 
         String[] sGenerated = new String[fields_num];
         fractions = new ArrayList<>();
-
-        int counter;
 
         do {
             fractions.clear();
@@ -73,6 +72,11 @@ class Fractions extends CategoryClass {
         while (counter < (fields_num) / 2);
 
         return sGenerated;
+    }
+
+    @Override
+    public int getCounter() {
+        return counter;
     }
 
     @Override

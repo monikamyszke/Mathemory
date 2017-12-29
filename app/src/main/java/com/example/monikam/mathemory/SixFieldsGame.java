@@ -1,6 +1,7 @@
 package com.example.monikam.mathemory;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.Vibrator;
@@ -21,12 +22,16 @@ import uk.co.chrisjenx.calligraphy.TypefaceUtils;
 public class SixFieldsGame extends AppCompatActivity {
 
     int fieldsNumber = 6;
+    int counter;
+    int counterIncorrect;
     String instruction;
     String[] sGenerated;
     List<Button> buttons = new ArrayList<>();
     CategoryClass category;
     Vibrator vib;
     MediaPlayer sound;
+    String categoryName;
+    int whichLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +44,8 @@ public class SixFieldsGame extends AppCompatActivity {
 
         setContentView(R.layout.activity_six_fields_game);
 
-        String categoryName = getIntent().getStringExtra("categoryName");
-        int whichLevel = getIntent().getIntExtra("whichLevel", 0);
+        categoryName = getIntent().getStringExtra("categoryName");
+        whichLevel = getIntent().getIntExtra("whichLevel", 0);
 
         category = Game.getCategory(categoryName);
 
@@ -49,6 +54,8 @@ public class SixFieldsGame extends AppCompatActivity {
         task.setText(instruction);
 
         sGenerated = category.generateNumbers(fieldsNumber, whichLevel);
+        counter = category.getCounter();
+        counterIncorrect = 0;
 
         for (int i = 1; i < (fieldsNumber + 1); i++) {
             int id = getResources().getIdentifier("f"+i, "id", getPackageName());
@@ -82,6 +89,7 @@ public class SixFieldsGame extends AppCompatActivity {
                     boolean correct;
                     correct = category.check(buttons.indexOf(b));
                     if (correct) {
+                        counter --;
                         b.setText(sGenerated[buttons.indexOf(b)]);
                         sound = MediaPlayer.create(getApplicationContext(), R.raw.correct_answer);
                         sound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -98,8 +106,33 @@ public class SixFieldsGame extends AppCompatActivity {
                         b.setEnabled(false);
                     }
                     else {
+                        counterIncorrect ++;
                         vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vib.vibrate(250);
+                    }
+                    if (counterIncorrect == 3) {
+                        Intent i = new Intent(getApplicationContext(), SixFieldsGame.class);
+                        i.putExtra("categoryName", categoryName);
+                        i.putExtra("whichLevel", whichLevel);
+                        startActivity(i);
+                        finish();
+                    }
+
+                    if (counter == 0) {
+
+                        Intent i;
+                        if (whichLevel == 1) {
+                            i = new Intent(getApplicationContext(), NineFieldsGame.class);
+                        }
+                        else {
+                            i = new Intent(getApplicationContext(), SixFieldsGame.class);
+                        }
+
+                        i.putExtra("categoryName", categoryName); // przesłanie informacji o wybranej kategorii
+                        i.putExtra("whichLevel", whichLevel+1); // przesłanie informacji który to poziom
+                        startActivity(i);
+                        finish();
+
                     }
 
                 }

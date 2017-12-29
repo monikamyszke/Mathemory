@@ -9,6 +9,7 @@ class Parity extends CategoryClass {
 
     private int[] generated;
     private String instruction;
+    private int counter; // zmienna do zliczania liczb spełniających warunek zadania
 
     @Override
     public String getInstruction(int curr_level) {
@@ -29,9 +30,6 @@ class Parity extends CategoryClass {
         generated = new int[fields_num];
         String[] sGenerated = new String[fields_num];
         Set<Integer> numbers = new HashSet<>(); // zbiór pomocniczy do przechowywania i porównywania wylosowanych liczb
-        ArrayMap<Integer, Integer> fractions = new ArrayMap<>();
-
-        int counter; // zmienna do zliczania liczb spełniających warunek zadania
 
         do {
                 numbers.clear();
@@ -73,6 +71,12 @@ class Parity extends CategoryClass {
 
         return sGenerated;
     }
+
+    @Override
+    public int getCounter() {
+        return counter;
+    }
+
 
     @Override
     public boolean check(int sel_field) {

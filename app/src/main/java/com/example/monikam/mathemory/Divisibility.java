@@ -7,6 +7,7 @@ class Divisibility extends CategoryClass {
 
     private int[] generated;
     private String instruction;
+    private int counter;
 
     @Override
     public String getInstruction(int curr_level) {
@@ -27,8 +28,6 @@ class Divisibility extends CategoryClass {
         generated = new int[fields_num];
         String[] sGenerated = new String[fields_num];
         Set<Integer> numbers = new HashSet<>();
-
-        int counter;
 
         do {
             numbers.clear();
@@ -68,6 +67,11 @@ class Divisibility extends CategoryClass {
         while (counter < (fields_num) / 2);
 
         return sGenerated;
+    }
+
+    @Override
+    public int getCounter() {
+        return counter;
     }
 
     @Override

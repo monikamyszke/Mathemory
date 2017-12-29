@@ -1,6 +1,7 @@
 package com.example.monikam.mathemory;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.Vibrator;
@@ -21,12 +22,16 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class FourFieldsGame extends AppCompatActivity {
 
     int  fieldsNumber = 4;
+    int counter;
+    int counterIncorrect;
     String instruction; // polecenie
     String[] sGenerated; // tablica wygenerowanych wartości
     List<Button> buttons = new ArrayList<>();
     CategoryClass category;
     Vibrator vib;
     MediaPlayer sound;
+    String categoryName;
+    int whichLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +44,8 @@ public class FourFieldsGame extends AppCompatActivity {
 
         setContentView(R.layout.activity_four_fields_game);
 
-        String categoryName = getIntent().getStringExtra("categoryName");
-        int whichLevel = getIntent().getIntExtra("whichLevel", 0);
+        categoryName = getIntent().getStringExtra("categoryName");
+        whichLevel = getIntent().getIntExtra("whichLevel", 0);
 
         category = Game.getCategory(categoryName); // pobranie właściwego obiektu na podstawie nazwy kategorii
 
@@ -49,6 +54,8 @@ public class FourFieldsGame extends AppCompatActivity {
         task.setText(instruction);
 
         sGenerated = category.generateNumbers(fieldsNumber, whichLevel); // wygenerowanie liczb
+        counter = category.getCounter();
+        counterIncorrect = 0;
 
         // ustawienie pól z liczbami
         for (int i = 1; i < (fieldsNumber + 1); i++) {
@@ -77,37 +84,65 @@ public class FourFieldsGame extends AppCompatActivity {
             }
         }, 4000);
 
-        // sprawdzanie po kliknięciu pola
-        for (final Button b : buttons) {
-            b.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    boolean correct;
-                    correct = category.check(buttons.indexOf(b));
-                    if (correct) {
-                        b.setText(sGenerated[buttons.indexOf(b)]);
-                        sound = MediaPlayer.create(getApplicationContext(), R.raw.correct_answer);
-                        sound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                            @Override
-                            public void onCompletion(MediaPlayer mp) {
-                                if(mp != null) {
-                                    mp.release();
-                                    sound = null;
-                                }
+    // sprawdzanie po kliknięciu pola
+    for (final Button b : buttons) {
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean correct;
+                correct = category.check(buttons.indexOf(b));
+                if (correct) {
+                    counter --;
+                    b.setText(sGenerated[buttons.indexOf(b)]);
+                    sound = MediaPlayer.create(getApplicationContext(), R.raw.correct_answer);
+                    sound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+                            if (mp != null) {
+                                mp.release();
+                                sound = null;
                             }
-                        });
-                        sound.start();
-                        b.setBackgroundResource(R.drawable.check_mark);
-                        b.setEnabled(false);
-                    }
-                    else {
-                        vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                        vib.vibrate(250);
-                    }
+                        }
+                    });
+                    sound.start();
+                    b.setBackgroundResource(R.drawable.check_mark);
+                    b.setEnabled(false);
+
 
                 }
-            });
-        }
+                else {
+                    counterIncorrect ++;
+                    vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vib.vibrate(250);
+                }
+
+                if (counterIncorrect == 3) {
+                    Intent i = new Intent(getApplicationContext(), FourFieldsGame.class);
+                    i.putExtra("categoryName", categoryName);
+                    i.putExtra("whichLevel", whichLevel);
+                    startActivity(i);
+                    finish();
+                }
+
+                if (counter == 0) {
+
+                    Intent i;
+                    if (whichLevel == 4) {
+                        i = new Intent(getApplicationContext(), SixFieldsGame.class);
+                    }
+                    else {
+                        i = new Intent(getApplicationContext(), FourFieldsGame.class);
+                    }
+
+                    i.putExtra("categoryName", categoryName); // przesłanie informacji o wybranej kategorii
+                    i.putExtra("whichLevel", whichLevel+1); // przesłanie informacji który to poziom
+                    startActivity(i);
+                    finish();
+
+                }
+            }
+        });
+    }
 
     }
 
