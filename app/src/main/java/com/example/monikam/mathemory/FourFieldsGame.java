@@ -3,6 +3,7 @@ package com.example.monikam.mathemory;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +33,8 @@ public class FourFieldsGame extends AppCompatActivity {
     MediaPlayer sound;
     String categoryName;
     int whichLevel;
+    TextView task;
+    TextView timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +52,14 @@ public class FourFieldsGame extends AppCompatActivity {
 
         category = Game.getCategory(categoryName); // pobranie właściwego obiektu na podstawie nazwy kategorii
 
+        TextView level = (TextView) findViewById(R.id.level);
+        level.setText("Poziom: " + String.valueOf(whichLevel));
+
         instruction = category.getInstruction(whichLevel); // pobranie polecenia na podstawie poziomu
-        TextView task = (TextView) findViewById(R.id.task);
-        task.setText(instruction);
+        task = (TextView) findViewById(R.id.task);
+        task.setText("Zapamiętaj " + String.valueOf(instruction));
+
+        timer = (TextView) findViewById(R.id.timer);
 
         sGenerated = category.generateNumbers(fieldsNumber, whichLevel); // wygenerowanie liczb
         counter = category.getCounter();
@@ -73,16 +81,22 @@ public class FourFieldsGame extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        // ukrycie liczb z pól planszy po upłynięciu czasu
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
+        new CountDownTimer(11000, 500) {
+
+            public void onTick(long millisUntilFinished) {
+                timer.setText("pozostało: " + String.valueOf(millisUntilFinished / 1000));
+            }
+
+            public void onFinish() {
+                task.setText("Wybierz " + String.valueOf(instruction));
+                timer.setText(null);
                 for (Button b : buttons) {
-                        b.setEnabled(true);
-                        b.setText(null);
+                    b.setEnabled(true);
+                    b.setText(null);
                 }
             }
-        }, 4000);
+
+        }.start();
 
     // sprawdzanie po kliknięciu pola
     for (final Button b : buttons) {

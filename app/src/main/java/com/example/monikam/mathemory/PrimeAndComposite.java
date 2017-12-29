@@ -13,10 +13,10 @@ class PrimeAndComposite extends CategoryClass {
     public String getInstruction(int curr_level) {
 
         if (curr_level == 3 || curr_level == 6 || curr_level == 9) {
-            instruction = "Wybierz liczby złożone:";
+            instruction = "liczby złożone";
         }
         else {
-            instruction = "Wybierz liczby pierwsze:";
+            instruction = "liczby pierwsze";
         }
 
         return instruction;
@@ -37,18 +37,19 @@ class PrimeAndComposite extends CategoryClass {
 
                 do {
                     int multiplier = 10;
+                    int multiplier2 = 7;
                     if (curr_level == 1) {
-                        generated[i] = 2 + (int) (Math.random() * (multiplier * (curr_level + fields_num)) - 1);
+                        generated[i] = 2 + (int) (Math.random() * (multiplier * (curr_level + fields_num)) - 1); // zakres 2-100
                     }
                     else {
-                        generated[i] = 2 + (int) (Math.random() * ((multiplier * curr_level - multiplier) - 1));
+                        generated[i] = 2 + (int) (Math.random() * ((multiplier2 * curr_level) - 1));
                     }
                 }
                 while (numbers.contains(generated[i]));
 
                 numbers.add(generated[i]);
 
-                if (instruction.equals("Wybierz liczby pierwsze:")) {
+                if (instruction.equals("liczby pierwsze")) {
                     if (checkIfPrime(generated[i])) {
                         counter ++;
                     }
@@ -85,7 +86,7 @@ class PrimeAndComposite extends CategoryClass {
     @Override
     public boolean check(int sel_field) {
 
-        if (instruction.equals("Wybierz liczby pierwsze:")) {
+        if (instruction.equals("liczby pierwsze")) {
             if (checkIfPrime(generated[sel_field])) {
                 return true;
             }

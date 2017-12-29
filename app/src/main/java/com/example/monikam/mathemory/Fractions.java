@@ -13,10 +13,10 @@ class Fractions extends CategoryClass {
     public String getInstruction(int curr_level) {
 
         if (curr_level == 3 || curr_level == 6 || curr_level == 9) {
-            instruction = "Wybierz ułamki niewłaściwe:";
+            instruction = "ułamki niewłaściwe";
         }
         else {
-            instruction = "Wybierz ułamki właściwe:";
+            instruction = "ułamki właściwe";
         }
 
         return instruction;
@@ -38,14 +38,15 @@ class Fractions extends CategoryClass {
 
                 do {
                     int multiplier = 10;
+                    int multiplier2 = 7;
                     if (curr_level == 1) {
-                        fraction.numerator = 1 + (int) (Math.random() * (multiplier * (curr_level + fields_num) - 1));
-                        fraction.denominator = 1 + (int) (Math.random() * (multiplier * (curr_level + fields_num) - 1));
+                        fraction.numerator = 1 + (int) (Math.random() * (multiplier * (curr_level + fields_num))); //zakres 1-100
+                        fraction.denominator = 1 + (int) (Math.random() * (multiplier * (curr_level + fields_num)));
 
                 }
                     else {
-                        fraction.numerator = 1 + (int) (Math.random() * (multiplier * curr_level - multiplier) - 1);
-                        fraction.denominator = 1 + (int) (Math.random() * (multiplier * curr_level - multiplier) - 1);
+                        fraction.numerator = 1 + (int) (Math.random() * (multiplier2 * curr_level));
+                        fraction.denominator = 1 + (int) (Math.random() * (multiplier2 * curr_level));
 
                     }
                 }
@@ -53,7 +54,7 @@ class Fractions extends CategoryClass {
 
                 fractions.add(fraction);
 
-                if (instruction.equals("Wybierz ułamki niewłaściwe:")) {
+                if (instruction.equals("ułamki niewłaściwe")) {
                     if (fraction.numerator > fraction.denominator) {
                         counter ++;
                     }
@@ -81,7 +82,7 @@ class Fractions extends CategoryClass {
 
     @Override
     public boolean check(int sel_field) {
-        if (instruction.equals("Wybierz ułamki niewłaściwe:")) {
+        if (instruction.equals("ułamki niewłaściwe")) {
             if (fractions.get(sel_field).numerator > fractions.get(sel_field).denominator) {
                 return true;
             }

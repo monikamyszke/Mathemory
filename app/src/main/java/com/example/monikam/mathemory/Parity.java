@@ -15,10 +15,10 @@ class Parity extends CategoryClass {
     public String getInstruction(int curr_level) {
 
         if (curr_level == 3 || curr_level == 6 || curr_level == 9) {
-            instruction = "Wybierz liczby nieparzyste:";
+            instruction = "liczby nieparzyste";
         }
         else {
-            instruction = "Wybierz liczby parzyste:";
+            instruction = "liczby parzyste";
         }
 
         return instruction;
@@ -41,7 +41,7 @@ class Parity extends CategoryClass {
                     do {
                         int multiplier = 10;
                         if (curr_level == 1) {
-                            generated[i] = (int) (Math.random() * (multiplier * (curr_level + fields_num) + 1));
+                            generated[i] = (int) (Math.random() * (multiplier * (curr_level + fields_num) + 1)); // zakres 0-100
                         }
                         else {
                             generated[i] = (int) (Math.random() * ((multiplier * curr_level - multiplier) + 1));
@@ -52,7 +52,7 @@ class Parity extends CategoryClass {
                     numbers.add(generated[i]);
 
                     // zliczanie liczb spełniających warunek zadania
-                    if (instruction.equals("Wybierz liczby parzyste:")) {
+                    if (instruction.equals("liczby parzyste")) {
                         if ((generated[i]) % 2 == 0) {
                             counter ++;
                         }
@@ -81,7 +81,7 @@ class Parity extends CategoryClass {
     @Override
     public boolean check(int sel_field) {
 
-        if (instruction.equals("Wybierz liczby parzyste:")) {
+        if (instruction.equals("liczby parzyste")) {
             if (generated[sel_field] %2 == 0) {
                 return true;
             }

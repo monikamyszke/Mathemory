@@ -13,10 +13,10 @@ class Divisibility extends CategoryClass {
     public String getInstruction(int curr_level) {
 
         if (curr_level == 3 || curr_level == 6 || curr_level == 9) {
-            instruction = "Wybierz liczby podzielne przez 5:";
+            instruction = "liczby podzielne przez 5";
         }
         else {
-            instruction = "Wybierz liczby podzielne przez 3:";
+            instruction = "liczby podzielne przez 3";
         }
 
         return instruction;
@@ -37,18 +37,24 @@ class Divisibility extends CategoryClass {
 
                 do {
                     int multiplier = 10;
+                    int multiplier2 = 7;
                     if (curr_level == 1) {
-                        generated[i] = 1 + (int) (Math.random() * (multiplier * (curr_level + fields_num)));
+                        generated[i] = 1 + (int) (Math.random() * (multiplier * (curr_level + fields_num))); // zakres 1-100
                     }
                     else {
-                        generated[i] = 1 + (int) (Math.random() * (multiplier * curr_level - multiplier));
+                        if (instruction.equals("liczby podzielne przez 3")) {
+                            generated[i] = 1 + (int) (Math.random() * (multiplier2 * curr_level));
+                        }
+                        else {
+                            generated[i] = 1 + (int) (Math.random() * (multiplier * curr_level - multiplier));
+                        }
                     }
                 }
                 while (numbers.contains(generated[i]));
 
                 numbers.add(generated[i]);
 
-                if (instruction.equals("Wybierz liczby podzielne przez 3:")) {
+                if (instruction.equals("liczby podzielne przez 3")) {
                     if ((generated[i]) % 3 == 0) {
                         counter ++;
                     }
@@ -77,7 +83,7 @@ class Divisibility extends CategoryClass {
     @Override
     public boolean check(int sel_field) {
 
-        if (instruction.equals("Wybierz liczby podzielne przez 3:")) {
+        if (instruction.equals("liczby podzielne przez 3")) {
             if (generated[sel_field] % 3 == 0) {
                 return true;
             }

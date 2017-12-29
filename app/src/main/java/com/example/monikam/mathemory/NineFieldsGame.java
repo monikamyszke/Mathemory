@@ -3,6 +3,7 @@ package com.example.monikam.mathemory;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +32,8 @@ public class NineFieldsGame extends AppCompatActivity {
     MediaPlayer sound;
     String categoryName;
     int whichLevel;
+    TextView task;
+    TextView timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +51,21 @@ public class NineFieldsGame extends AppCompatActivity {
 
         category = Game.getCategory(categoryName);
 
+        TextView level = (TextView) findViewById(R.id.level);
+        level.setText("Poziom: " + String.valueOf(whichLevel));
+
         instruction = category.getInstruction(whichLevel);
-        TextView task = (TextView) findViewById(R.id.task);
-        task.setText(instruction);
+        task = (TextView) findViewById(R.id.task);
+
+        if (whichLevel != 1) {
+            task.setText("Zapamiętaj " + String.valueOf(instruction));
+        }
+        else {
+            task.setText("Wybierz " + String.valueOf(instruction));
+        }
+
+
+        timer = (TextView) findViewById(R.id.timer);
 
         sGenerated = category.generateNumbers(fieldsNumber, whichLevel);
         counter = category.getCounter();
@@ -72,15 +87,22 @@ public class NineFieldsGame extends AppCompatActivity {
         super.onResume();
 
         if (whichLevel != 1) {
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                public void run() {
+            new CountDownTimer(21000, 500) {
+
+                public void onTick(long millisUntilFinished) {
+                    timer.setText("pozostało: " + String.valueOf(millisUntilFinished / 1000));
+                }
+
+                public void onFinish() {
+                    task.setText("Wybierz " + String.valueOf(instruction));
+                    timer.setText(null);
                     for (Button b : buttons) {
                         b.setEnabled(true);
                         b.setText(null);
                     }
                 }
-            }, 9000);
+
+            }.start();
         }
         else {
             for (Button b : buttons) {
@@ -132,6 +154,9 @@ public class NineFieldsGame extends AppCompatActivity {
                         Intent i;
                         if (whichLevel == 1) {
                             i = new Intent(getApplicationContext(), FourFieldsGame.class);
+                        }
+                        else if (whichLevel == 10) {
+                            i = new Intent(getApplicationContext(), MainActivity.class);
                         }
                         else {
                             i = new Intent(getApplicationContext(), NineFieldsGame.class);
