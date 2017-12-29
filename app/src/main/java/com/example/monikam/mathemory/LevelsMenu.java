@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -32,6 +34,10 @@ public class LevelsMenu extends AppCompatActivity {
         cat_name.setText(categoryName); // wyświetlenie nazwy kategorii na górze ekranu
 
         final List<Button> levelButtons = new ArrayList<Button>(); // lista z poziomami 1-10
+
+//        ImageView b1 = (ImageView) findViewById(R.id.s1);
+//        b1.setImageResource(R.drawable.two_yellow);
+
 
         for (int i = 1; i < 11; i++) {
             int id = getResources().getIdentifier("lev"+i, "id", getPackageName());
