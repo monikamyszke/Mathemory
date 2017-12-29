@@ -96,13 +96,14 @@ public class NineFieldsGame extends AppCompatActivity {
                         sound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                             @Override
                             public void onCompletion(MediaPlayer mp) {
-                                if(mp != null) {
+                               if(mp != null) {
                                     mp.release();
                                     sound = null;
                                 }
                             }
                         });
                         sound.start();
+                        b.setBackgroundResource(R.drawable.check_mark);
                         b.setEnabled(false);
                     }
                     else {

@@ -97,6 +97,7 @@ public class FourFieldsGame extends AppCompatActivity {
                             }
                         });
                         sound.start();
+                        b.setBackgroundResource(R.drawable.check_mark);
                         b.setEnabled(false);
                     }
                     else {

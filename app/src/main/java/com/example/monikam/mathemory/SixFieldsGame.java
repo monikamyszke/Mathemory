@@ -94,6 +94,7 @@ public class SixFieldsGame extends AppCompatActivity {
                             }
                         });
                         sound.start();
+                        b.setBackgroundResource(R.drawable.check_mark);
                         b.setEnabled(false);
                     }
                     else {
