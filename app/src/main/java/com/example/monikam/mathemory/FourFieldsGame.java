@@ -35,6 +35,7 @@ public class FourFieldsGame extends AppCompatActivity {
     int whichLevel;
     TextView task;
     TextView timer;
+    int stars = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +83,6 @@ public class FourFieldsGame extends AppCompatActivity {
         super.onResume();
 
         new CountDownTimer(11000, 500) {
-
             public void onTick(long millisUntilFinished) {
                 timer.setText("pozostało: " + String.valueOf(millisUntilFinished / 1000));
             }
@@ -98,11 +98,11 @@ public class FourFieldsGame extends AppCompatActivity {
 
         }.start();
 
-    // sprawdzanie po kliknięciu pola
-    for (final Button b : buttons) {
-        b.setOnClickListener(new View.OnClickListener() {
+        // sprawdzanie po kliknięciu pola
+        for (final Button b : buttons) {
+            b.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+             public void onClick(View v) {
                 boolean correct;
                 correct = category.check(buttons.indexOf(b));
                 if (correct) {
@@ -126,10 +126,12 @@ public class FourFieldsGame extends AppCompatActivity {
                 }
                 else {
                     counterIncorrect ++;
+                    stars --;
                     vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vib.vibrate(250);
                 }
 
+                // powtórzenie poziomu jeżeli popełniono 3 błędy
                 if (counterIncorrect == 3) {
                     Intent i = new Intent(getApplicationContext(), FourFieldsGame.class);
                     i.putExtra("categoryName", categoryName);
@@ -140,6 +142,8 @@ public class FourFieldsGame extends AppCompatActivity {
 
                 if (counter == 0) {
 
+                    Game.completeLevel(category, whichLevel, stars); // zapisanie informacji po ukończeniu poziomu
+
                     Intent i;
                     if (whichLevel == 4) {
                         i = new Intent(getApplicationContext(), SixFieldsGame.class);
@@ -148,18 +152,16 @@ public class FourFieldsGame extends AppCompatActivity {
                         i = new Intent(getApplicationContext(), FourFieldsGame.class);
                     }
 
-                    i.putExtra("categoryName", categoryName); // przesłanie informacji o wybranej kategorii
-                    i.putExtra("whichLevel", whichLevel+1); // przesłanie informacji który to poziom
+                    i.putExtra("categoryName", categoryName);
+                    i.putExtra("whichLevel", whichLevel + 1);
                     startActivity(i);
                     finish();
 
                 }
             }
-        });
+            });
+        }
     }
-
-    }
-
 
 
     @Override

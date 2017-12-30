@@ -34,6 +34,7 @@ public class NineFieldsGame extends AppCompatActivity {
     int whichLevel;
     TextView task;
     TextView timer;
+    int stars = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +89,6 @@ public class NineFieldsGame extends AppCompatActivity {
 
         if (whichLevel != 1) {
             new CountDownTimer(21000, 500) {
-
                 public void onTick(long millisUntilFinished) {
                     timer.setText("pozostało: " + String.valueOf(millisUntilFinished / 1000));
                 }
@@ -137,8 +137,9 @@ public class NineFieldsGame extends AppCompatActivity {
                     }
                     else {
                         counterIncorrect ++;
-                            vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                            vib.vibrate(250);
+                        stars --;
+                        vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        vib.vibrate(250);
                     }
 
                     if (counterIncorrect == 3) {
@@ -151,6 +152,8 @@ public class NineFieldsGame extends AppCompatActivity {
 
                     if (counter == 0) {
 
+                        Game.completeLevel(category, whichLevel, stars);
+
                         Intent i;
                         if (whichLevel == 1) {
                             i = new Intent(getApplicationContext(), FourFieldsGame.class);
@@ -162,8 +165,8 @@ public class NineFieldsGame extends AppCompatActivity {
                             i = new Intent(getApplicationContext(), NineFieldsGame.class);
                         }
 
-                        i.putExtra("categoryName", categoryName); // przesłanie informacji o wybranej kategorii
-                        i.putExtra("whichLevel", whichLevel+1); // przesłanie informacji który to poziom
+                        i.putExtra("categoryName", categoryName);
+                        i.putExtra("whichLevel", whichLevel + 1);
                         startActivity(i);
                         finish();
 

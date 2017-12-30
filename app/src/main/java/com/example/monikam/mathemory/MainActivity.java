@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         );
 
         Game.initGame();
+        Game.unlockedLevels[0] = true;
 
         setContentView(R.layout.activity_main);
 

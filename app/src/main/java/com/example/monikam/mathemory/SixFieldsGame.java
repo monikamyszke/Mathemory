@@ -35,6 +35,7 @@ public class SixFieldsGame extends AppCompatActivity {
     int whichLevel;
     TextView task;
     TextView timer;
+    int stars = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +82,6 @@ public class SixFieldsGame extends AppCompatActivity {
         super.onResume();
 
         new CountDownTimer(16000, 500) {
-
             public void onTick(long millisUntilFinished) {
                 timer.setText("pozostało: " + String.valueOf(millisUntilFinished / 1000));
             }
@@ -122,6 +122,7 @@ public class SixFieldsGame extends AppCompatActivity {
                     }
                     else {
                         counterIncorrect ++;
+                        stars --;
                         vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         vib.vibrate(250);
                     }
@@ -135,6 +136,8 @@ public class SixFieldsGame extends AppCompatActivity {
 
                     if (counter == 0) {
 
+                        Game.completeLevel(category, whichLevel, stars);
+
                         Intent i;
                         if (whichLevel == 7) {
                             i = new Intent(getApplicationContext(), NineFieldsGame.class);
@@ -143,8 +146,8 @@ public class SixFieldsGame extends AppCompatActivity {
                             i = new Intent(getApplicationContext(), SixFieldsGame.class);
                         }
 
-                        i.putExtra("categoryName", categoryName); // przesłanie informacji o wybranej kategorii
-                        i.putExtra("whichLevel", whichLevel+1); // przesłanie informacji który to poziom
+                        i.putExtra("categoryName", categoryName);
+                        i.putExtra("whichLevel", whichLevel +1 );
                         startActivity(i);
                         finish();
 
@@ -153,7 +156,6 @@ public class SixFieldsGame extends AppCompatActivity {
                 }
             });
         }
-
     }
 
 

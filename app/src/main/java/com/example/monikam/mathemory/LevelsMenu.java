@@ -18,6 +18,9 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class LevelsMenu extends AppCompatActivity {
 
+    CategoryClass category;
+    String categoryName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,20 +32,19 @@ public class LevelsMenu extends AppCompatActivity {
 
         setContentView(R.layout.activity_levels_menu);
 
-        final String categoryName = getIntent().getStringExtra("categoryName");
+        categoryName = getIntent().getStringExtra("categoryName");
         TextView cat_name = (TextView) findViewById(R.id.cat_name);
         cat_name.setText(categoryName); // wyświetlenie nazwy kategorii na górze ekranu
 
+        category = Game.getCategory(categoryName);
+
         final List<Button> levelButtons = new ArrayList<Button>(); // lista z poziomami 1-10
-
-//        ImageView b1 = (ImageView) findViewById(R.id.s1);
-//        b1.setImageResource(R.drawable.two_yellow);
-
 
         for (int i = 1; i < 11; i++) {
             int id = getResources().getIdentifier("lev"+i, "id", getPackageName());
             Button b = (Button) findViewById(id);
             levelButtons.add(b);
+
         }
 
         for (Button b : levelButtons) {
@@ -71,6 +73,42 @@ public class LevelsMenu extends AppCompatActivity {
             });
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // ustawianie blokady poziomów oraz liczby gwiazdek
+        for (int i = 1; i < 11; i++) {
+            int id;
+            id = getResources().getIdentifier("lev"+i, "id", getPackageName());
+            Button b = (Button) findViewById(id);
+            boolean unlocked = Game.getLevelStates(category, i);
+
+            if (unlocked) {
+                b.setEnabled(true);
+            }
+            else {
+                b.setEnabled(false);
+            }
+
+            int star = Game.getStars(category, i);
+            id = getResources().getIdentifier("s"+i, "id", getPackageName());
+            ImageView stars = (ImageView) findViewById(id);
+
+            if (star == 1){
+                stars.setImageResource(R.drawable.one_yellow);
+            }
+            else if (star == 2) {
+                stars.setImageResource(R.drawable.two_yellow);
+            }
+            else if (star == 3) {
+                stars.setImageResource(R.drawable.three_yellow);
+            }
+            else {
+                stars.setImageResource(R.drawable.all_grey);
+            }
+        }
     }
 
     @Override
