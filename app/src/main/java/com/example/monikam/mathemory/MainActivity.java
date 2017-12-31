@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import java.util.Hashtable;
@@ -25,20 +26,14 @@ public class MainActivity extends AppCompatActivity {
 
         Game.initGame();
         Game.unlockedLevels[0] = true;
+        Game.unlockedCategories[0] = true;
 
         setContentView(R.layout.activity_main);
 
         ImageButton cat1 = (ImageButton) findViewById(R.id.cat1);
-        cat1.setEnabled(true);
-
         ImageButton cat2 = (ImageButton) findViewById(R.id.cat2);
-        cat2.setEnabled(true);
-
         ImageButton cat3 = (ImageButton) findViewById(R.id.cat3);
-        cat3.setEnabled(true);
-
         ImageButton cat4 = (ImageButton) findViewById(R.id.cat4);
-        cat4.setEnabled(true);
 
         // przypisanie przyciskom odpowiednich nazw kategorii
         final Hashtable<ImageButton, String> categories = new Hashtable<ImageButton, String> ();
@@ -59,6 +54,25 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // ustawianie blokady kategorii
+        for(int i = 1; i <= 4; i++) {
+            int id;
+            id = getResources().getIdentifier("cat"+i, "id", getPackageName());
+            ImageButton category = (ImageButton) findViewById(id);
+            boolean unlocked = Game.getCategoryStates(i);
+
+            if (unlocked) {
+                category.setEnabled(true);
+            }
+            else {
+                category.setEnabled(false);
+            }
+        }
     }
 
     @Override

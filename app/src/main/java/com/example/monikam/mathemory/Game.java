@@ -16,6 +16,7 @@ class Game {
 
     private static int[] stars = new int[40]; // tablica przechowująca ilośc gwiazdek
     static boolean[] unlockedLevels = new boolean[40]; // tablica przechowująca informacje o blokadzie poziomów
+    static boolean[] unlockedCategories = new boolean[4]; // tablica przechowująca informacje o blokadzie kategorii
 
     static void initGame() { // obiekt klasy Game może być utworzony tylko 1 raz
         if (game == null) {
@@ -56,6 +57,9 @@ class Game {
         if ((whichLevel + p) < 40) {
             unlockedLevels[whichLevel + p] = true; // odblokowanie kolejnego poziomu
         }
+        if (whichLevel %10 == 0 && p < 30) { // odblokowanie kolejnej kategorii
+            unlockedCategories[(p + whichLevel) / 10] = true;
+        }
     }
 
     // funkcja zwracająca liczbę gwiazdek przyznaną za dany poziom w kategorii
@@ -72,6 +76,13 @@ class Game {
         int p = getElement(category);
         levelState = unlockedLevels[whichLevel + p - 1];
         return levelState;
+    }
+
+    // funkcja zwracająca stan kategorii (odblokowany/zablokowany)
+    static boolean getCategoryStates(int category) {
+        boolean categoryState;
+        categoryState = unlockedCategories[category - 1];
+        return categoryState;
     }
 
     // funkcja zwracająca zmienną pomocniczą do definiowania poziomów kategorii w tablicy
