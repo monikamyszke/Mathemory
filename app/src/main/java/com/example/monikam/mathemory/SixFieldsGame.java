@@ -84,7 +84,7 @@ public class SixFieldsGame extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        new CountDownTimer(16000, 500) {
+        new CountDownTimer(13000, 500) {
             public void onTick(long millisUntilFinished) {
                 timer.setText("pozostało: " + String.valueOf(millisUntilFinished / 1000));
             }
@@ -131,94 +131,15 @@ public class SixFieldsGame extends AppCompatActivity {
                     }
                     if (counterIncorrect == 3) {
 
-                        final Dialog uncompleted = new Dialog(context);
-                        uncompleted.setContentView(R.layout.uncompleted_level);
+                        final DialogWindow uncompleted = new DialogWindow(context, whichLevel, categoryName);
                         uncompleted.show();
-
-                        Button repeatLevel = (Button) uncompleted.findViewById(R.id.button);
-                        Button goBack = (Button) uncompleted.findViewById(R.id.button2);
-
-                        repeatLevel.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent i;
-                                i = new Intent(getApplicationContext(), SixFieldsGame.class);
-                                i.putExtra("categoryName", categoryName);
-                                i.putExtra("whichLevel", whichLevel);
-                                uncompleted.dismiss();
-                                startActivity(i);
-                                finish();
-                            }
-                        });
-
-                        goBack.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent i;
-                                i = new Intent(getApplicationContext(), LevelsMenu.class);
-                                i.putExtra("categoryName", categoryName);
-                                uncompleted.dismiss();
-                                startActivity(i);
-                                finish();
-                            }
-                        });
-
                     }
 
                     if (counter == 0) {
 
                         Game.completeLevel(category, whichLevel, stars);
-
-                        final Dialog completed = new Dialog(context);
-                        completed.setContentView(R.layout.completed_level);
+                        final DialogWindow completed = new DialogWindow(context, whichLevel, categoryName, stars);
                         completed.show();
-
-                        ImageView starsResult = (ImageView) completed.findViewById(R.id.stars);
-                        switch (stars) {
-                            case 1: starsResult.setImageResource(R.drawable.one_yellow);
-                                break;
-                            case 2: starsResult.setImageResource(R.drawable.two_yellow);
-                                break;
-                            case 3: starsResult.setImageResource(R.drawable.three_yellow);
-                                break;
-                            default: starsResult.setImageResource(R.drawable.all_grey);
-                                break;
-                        }
-
-                        Button nextLevel = (Button) completed.findViewById(R.id.button);
-                        Button repeatLevel = (Button) completed.findViewById(R.id.button2);
-
-                        nextLevel.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent i;
-                                if (whichLevel == 7) {
-                                    i = new Intent(getApplicationContext(), NineFieldsGame.class);
-                                }
-                                else {
-                                    i = new Intent(getApplicationContext(), SixFieldsGame.class);
-                                }
-                                i.putExtra("categoryName", categoryName);
-                                i.putExtra("whichLevel", whichLevel + 1);
-                                completed.dismiss();
-                                startActivity(i);
-                                finish();
-                            }
-                        });
-
-                        repeatLevel.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent i;
-                                i = new Intent(getApplicationContext(), SixFieldsGame.class);
-                                i.putExtra("categoryName", categoryName);
-                                i.putExtra("whichLevel", whichLevel);
-                                completed.dismiss();
-                                startActivity(i);
-                                finish();
-                            }
-                        });
-
                     }
 
                 }

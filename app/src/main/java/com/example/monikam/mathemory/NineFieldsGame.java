@@ -68,7 +68,6 @@ public class NineFieldsGame extends AppCompatActivity {
             task.setText("Wybierz " + String.valueOf(instruction));
         }
 
-
         timer = (TextView) findViewById(R.id.timer);
 
         sGenerated = category.generateNumbers(fieldsNumber, whichLevel);
@@ -91,7 +90,7 @@ public class NineFieldsGame extends AppCompatActivity {
         super.onResume();
 
         if (whichLevel != 1) {
-            new CountDownTimer(21000, 500) {
+            new CountDownTimer(17000, 500) {
                 public void onTick(long millisUntilFinished) {
                     timer.setText("pozostało: " + String.valueOf(millisUntilFinished / 1000));
                 }
@@ -111,7 +110,6 @@ public class NineFieldsGame extends AppCompatActivity {
             for (Button b : buttons) {
                 b.setEnabled(true);
             }
-
         }
 
         for (final Button b : buttons) {
@@ -147,101 +145,15 @@ public class NineFieldsGame extends AppCompatActivity {
 
                     if (counterIncorrect == 3) {
 
-                        final Dialog uncompleted = new Dialog(context);
-                        uncompleted.setContentView(R.layout.uncompleted_level);
+                        final DialogWindow uncompleted = new DialogWindow(context, whichLevel, categoryName);
                         uncompleted.show();
-
-                        Button repeatLevel = (Button) uncompleted.findViewById(R.id.button);
-                        Button goBack = (Button) uncompleted.findViewById(R.id.button2);
-
-                        repeatLevel.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent i;
-                                i = new Intent(getApplicationContext(), NineFieldsGame.class);
-                                i.putExtra("categoryName", categoryName);
-                                i.putExtra("whichLevel", whichLevel);
-                                uncompleted.dismiss();
-                                startActivity(i);
-                                finish();
-                            }
-                        });
-
-                        goBack.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent i;
-                                i = new Intent(getApplicationContext(), LevelsMenu.class);
-                                i.putExtra("categoryName", categoryName);
-                                uncompleted.dismiss();
-                                startActivity(i);
-                                finish();
-                            }
-                        });
                     }
 
                     if (counter == 0) {
 
                         Game.completeLevel(category, whichLevel, stars);
-
-                        final Dialog completed = new Dialog(context);
-                        completed.setContentView(R.layout.completed_level);
+                        final DialogWindow completed = new DialogWindow(context, whichLevel, categoryName, stars);
                         completed.show();
-
-                        ImageView starsResult = (ImageView) completed.findViewById(R.id.stars);
-                        switch (stars) {
-                            case 1: starsResult.setImageResource(R.drawable.one_yellow);
-                                break;
-                            case 2: starsResult.setImageResource(R.drawable.two_yellow);
-                                break;
-                            case 3: starsResult.setImageResource(R.drawable.three_yellow);
-                                break;
-                            default: starsResult.setImageResource(R.drawable.all_grey);
-                                break;
-                        }
-
-                        Button nextLevel = (Button) completed.findViewById(R.id.button);
-                        Button repeatLevel = (Button) completed.findViewById(R.id.button2);
-
-                        nextLevel.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent i;
-                                if (whichLevel == 1) {
-                                    i = new Intent(getApplicationContext(), FourFieldsGame.class);
-                                }
-                                else if (whichLevel == 10) {
-                                    i = new Intent(getApplicationContext(), MainActivity.class);
-                                }
-                                else {
-                                    i = new Intent(getApplicationContext(), NineFieldsGame.class);
-                                }
-                                i.putExtra("categoryName", categoryName);
-                                i.putExtra("whichLevel", whichLevel + 1);
-                                completed.dismiss();
-                                startActivity(i);
-                                finish();
-                            }
-                        });
-
-                        repeatLevel.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent i;
-                                if (whichLevel == 1) {
-                                    i = new Intent(getApplicationContext(), FourFieldsGame.class);
-                                }
-                                else {
-                                    i = new Intent(getApplicationContext(), NineFieldsGame.class);
-                                }
-                                i.putExtra("categoryName", categoryName);
-                                i.putExtra("whichLevel", whichLevel);
-                                completed.dismiss();
-                                startActivity(i);
-                                finish();
-                            }
-                        });
-
                     }
 
                 }
