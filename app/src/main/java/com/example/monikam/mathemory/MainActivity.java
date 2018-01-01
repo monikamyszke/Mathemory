@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import java.io.File;
 import java.util.Hashtable;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -24,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
                 .build()
         );
 
-        Game.initGame();
+        File file = getApplicationContext().getFilesDir();
+        Game.initGame(file);
         Game.unlockedLevels[0] = true;
         Game.unlockedCategories[0] = true;
 

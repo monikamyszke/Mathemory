@@ -5,10 +5,18 @@ import com.example.monikam.mathemory.Fractions;
 import com.example.monikam.mathemory.Parity;
 import com.example.monikam.mathemory.PrimeAndComposite;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
 class Game {
 
     private static Game game;
-
+    private File save;
     private Parity parity;
     private Divisibility divisibility;
     private PrimeAndComposite primeAndComposite;
@@ -18,9 +26,11 @@ class Game {
     static boolean[] unlockedLevels = new boolean[40]; // tablica przechowująca informacje o blokadzie poziomów
     static boolean[] unlockedCategories = new boolean[4]; // tablica przechowująca informacje o blokadzie kategorii
 
-    static void initGame() { // obiekt klasy Game może być utworzony tylko 1 raz
+    static void initGame(File save) { // obiekt klasy Game może być utworzony tylko 1 raz
         if (game == null) {
             game = new Game();
+            game.save = new File(save.toString(), "saved_data.txt");
+            game.readFromFile();
         }
     }
 // obiekt klasy Game może być utworzony tylko wewnątrz tej klasy
@@ -60,6 +70,8 @@ class Game {
         if (whichLevel %10 == 0 && p < 30) { // odblokowanie kolejnej kategorii
             unlockedCategories[(p + whichLevel) / 10] = true;
         }
+
+        game.saveToFile(); // zapis danych do pliku
     }
 
     // funkcja zwracająca liczbę gwiazdek przyznaną za dany poziom w kategorii
@@ -103,6 +115,47 @@ class Game {
 
         return element;
     }
+
+    // zapis danych do pliku
+    private void saveToFile() {
+        try {
+            File file = save;
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            FileOutputStream f = new FileOutputStream(file, false);
+            ObjectOutputStream o = new ObjectOutputStream(f);
+            o.writeObject(unlockedCategories);
+            o.writeObject(unlockedLevels);
+            o.writeObject(stars);
+            o.close();
+            f.close();
+        }
+        catch (IOException e) {
+           e.printStackTrace();
+        }
+
+   }
+
+   // odczyt danych z pliku
+   private void readFromFile() {
+       try {
+           File file = save;
+           FileInputStream f = new FileInputStream(file);
+           ObjectInputStream o = new ObjectInputStream(f);
+           unlockedCategories = (boolean[]) o.readObject();
+           unlockedLevels = (boolean[]) o.readObject();
+           stars = (int[]) o.readObject();
+           o.close();
+           f.close();
+
+       }
+       catch (IOException | ClassNotFoundException e) {
+           e.printStackTrace();
+       }
+
+   }
 
     public static Game getInstance() {
         return game;
