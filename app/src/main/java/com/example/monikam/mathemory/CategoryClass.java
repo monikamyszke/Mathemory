@@ -14,4 +14,5 @@ abstract class CategoryClass {
     public abstract int getCounter(); // funkcja zwracając ilość wygenerowanych liczb spełniających warunek
 
     public abstract boolean check(int sel_field); // funkcja sprawdzająca poprawność
+
 }

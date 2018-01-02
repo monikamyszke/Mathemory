@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -101,6 +102,23 @@ public class NineFieldsGame extends AppCompatActivity {
                     for (Button b : buttons) {
                         b.setEnabled(true);
                         b.setText(null);
+                    }
+
+                    if (whichLevel == 10) {
+
+                        Button b1, b2;
+                        int b1Position, b2Position;
+                        b1Position = new Random().nextInt(buttons.size());
+                        b1 = buttons.get(b1Position);
+                        do {
+                            b2Position = new Random().nextInt(buttons.size());
+                        }
+                        while (b1Position == b2Position);
+                        b2 = buttons.get(b2Position);
+
+                        b1.animate().translationXBy(b2.getX() - b1.getX()).translationYBy(b2.getY() - b1.getY()).setDuration(1000).start();
+                        b2.animate().translationXBy(b1.getX() - b2.getX()).translationYBy(b1.getY() - b2.getY()).setDuration(1000).start();
+
                     }
                 }
 
