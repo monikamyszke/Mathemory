@@ -15,6 +15,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Handler;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -92,11 +93,13 @@ public class FourFieldsGame extends AppCompatActivity {
                 task.setText("Wybierz " + String.valueOf(instruction));
                 timer.setText(null);
                 for (Button b : buttons) {
-                    b.setEnabled(true);
                     b.setText(null);
+                    if (whichLevel != 4) {
+                        b.setEnabled(true);
+                    }
                 }
 
-                if (whichLevel == 4) { // zamiana dwóch pól z liczbami
+                if (whichLevel == 4) {  // zamiana dwóch pól z liczbami
 
                     Button b1, b2;
                     int b1Position, b2Position;
@@ -113,11 +116,25 @@ public class FourFieldsGame extends AppCompatActivity {
 
                 }
 
+                new CountDownTimer(1000,10) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        for (Button b : buttons) {
+                            if (whichLevel == 4) {
+                                b.setEnabled(true);
+                            }
+                        }
+                    }
+                }.start();
+
             }
 
         }.start();
-
-
+        
         // sprawdzanie po kliknięciu pola
         for (final Button b : buttons) {
             b.setOnClickListener(new View.OnClickListener() {

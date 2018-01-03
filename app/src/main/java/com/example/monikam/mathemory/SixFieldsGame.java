@@ -94,8 +94,10 @@ public class SixFieldsGame extends AppCompatActivity {
                 task.setText("Wybierz " + String.valueOf(instruction));
                 timer.setText(null);
                 for (Button b : buttons) {
-                    b.setEnabled(true);
                     b.setText(null);
+                    if (whichLevel != 7) {
+                        b.setEnabled(true);
+                    }
                 }
 
                 if (whichLevel == 7) {
@@ -114,6 +116,21 @@ public class SixFieldsGame extends AppCompatActivity {
                     b2.animate().translationXBy(b1.getX() - b2.getX()).translationYBy(b1.getY() - b2.getY()).setDuration(1000).start();
 
                 }
+
+                new CountDownTimer(1000,10) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        for (Button b : buttons) {
+                            if (whichLevel == 7) {
+                                b.setEnabled(true);
+                            }
+                        }
+                    }
+                }.start();
             }
 
         }.start();
