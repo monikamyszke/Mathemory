@@ -15,7 +15,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Handler;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -134,7 +133,7 @@ public class FourFieldsGame extends AppCompatActivity {
             }
 
         }.start();
-        
+
         // sprawdzanie po kliknięciu pola
         for (final Button b : buttons) {
             b.setOnClickListener(new View.OnClickListener() {

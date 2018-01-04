@@ -38,7 +38,11 @@ public class LevelsMenu extends AppCompatActivity {
 
         category = Game.getCategory(categoryName);
 
-        final List<Button> levelButtons = new ArrayList<Button>(); // lista z poziomami 1-10
+        final List<Button> levelButtons = new ArrayList<Button>(); // lista z przyciskami przykładu i poziomów 1-10
+
+        Button e = (Button) findViewById(R.id.example);
+        levelButtons.add(e);
+        e.setEnabled(true);
 
         for (int i = 1; i < 11; i++) {
             int id = getResources().getIdentifier("lev"+i, "id", getPackageName());
@@ -55,18 +59,23 @@ public class LevelsMenu extends AppCompatActivity {
                         Intent i = null;
 
                         // przyporządkowanie poziomom odpowiednich plansz
-                        if (levelButtons.indexOf(v) > 0 && levelButtons.indexOf(v) < 4) {
+                        if (levelButtons.indexOf(v) == 0) {
+                            i = new Intent(getApplicationContext(), ExampleDivisibility1.class);
+                        }
+                        else if (levelButtons.indexOf(v) > 1 && levelButtons.indexOf(v) < 5) {
                             i = new Intent(getApplicationContext(), FourFieldsGame.class);
                         }
-                        else if (levelButtons.indexOf(v) > 3 && levelButtons.indexOf(v) < 7) {
+                        else if (levelButtons.indexOf(v) > 4 && levelButtons.indexOf(v) < 8) {
                             i = new Intent(getApplicationContext(), SixFieldsGame.class);
                         }
                         else {
                             i = new Intent(getApplicationContext(), NineFieldsGame.class);
                         }
 
-                        i.putExtra("categoryName", categoryName); // przesłanie informacji o wybranej kategorii
-                        i.putExtra("whichLevel", levelButtons.indexOf(v)+1); // przesłanie informacji który to poziom
+                    i.putExtra("categoryName", categoryName); // przesłanie informacji o wybranej kategorii
+                    if (levelButtons.indexOf(v) != 0) {
+                        i.putExtra("whichLevel", levelButtons.indexOf(v)); // przesłanie informacji który to poziom
+                    }
                         startActivity(i);
 
                 }

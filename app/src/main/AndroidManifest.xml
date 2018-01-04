@@ -37,6 +37,15 @@
         <activity
             android:name=".NineFieldsGame"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ExampleDivisibility1"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ExampleDivisibility2"
+            android:theme="@style/AppTheme" />
+
+        <activity android:name=".ExampleParity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
