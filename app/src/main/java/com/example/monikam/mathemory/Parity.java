@@ -1,7 +1,5 @@
 package com.example.monikam.mathemory;
 
-import android.util.ArrayMap;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -95,7 +93,7 @@ class Parity extends CategoryClass {
         return false;
     }
 
-    public int generateForExample(boolean parity) {
+    int generateForExample(boolean parity) {
         int number, rest;
 
         if (parity) {

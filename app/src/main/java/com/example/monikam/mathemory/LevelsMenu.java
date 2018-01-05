@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -37,7 +36,7 @@ public class LevelsMenu extends AppCompatActivity {
 
         category = Game.getCategory(categoryName);
 
-        final List<Button> levelButtons = new ArrayList<>(); // lista z przyciskami przykładu i poziomów 1-10
+        final ArrayList<Button> levelButtons = new ArrayList<>(); // lista z przyciskami przykładu i poziomów 1-10
 
         Button e = (Button) findViewById(R.id.example);
         levelButtons.add(e);
@@ -56,27 +55,30 @@ public class LevelsMenu extends AppCompatActivity {
                 public void onClick(View v) {
                     
                         Intent i;
+                        Button button = (Button) v;
 
                         // przyporządkowanie poziomom odpowiednich plansz
-                        if (levelButtons.indexOf(v) == 0) {
+                        if (levelButtons.indexOf(button) == 0) {
 
-                            if (categoryName.equals("Parzystość liczb")) {
-                                i = new Intent(getApplicationContext(), ExampleParity.class);
-                            }
-                            else if (categoryName.equals("Podzielność liczb")) {
-                                i = new Intent(getApplicationContext(), ExampleDivisibility1.class);
-                            }
-                            else if (categoryName.equals("Liczby pierwsze i złożone")) {
-                                i = new Intent(getApplicationContext(), ExamplePrimeAndComposite.class);
-                            }
-                            else {
-                                i = new Intent(getApplicationContext(), ExampleFractions1.class);
+                            switch (categoryName) {
+                                case "Parzystość liczb":
+                                    i = new Intent(getApplicationContext(), ExampleParity.class);
+                                    break;
+                                case "Podzielność liczb":
+                                    i = new Intent(getApplicationContext(), ExampleDivisibility1.class);
+                                    break;
+                                case "Liczby pierwsze i złożone":
+                                    i = new Intent(getApplicationContext(), ExamplePrimeAndComposite.class);
+                                    break;
+                                default:
+                                    i = new Intent(getApplicationContext(), ExampleFractions1.class);
+                                    break;
                             }
                         }
-                        else if (levelButtons.indexOf(v) > 1 && levelButtons.indexOf(v) < 5) {
+                        else if (levelButtons.indexOf(button) > 1 && levelButtons.indexOf(v) < 5) {
                             i = new Intent(getApplicationContext(), FourFieldsGame.class);
                         }
-                        else if (levelButtons.indexOf(v) > 4 && levelButtons.indexOf(v) < 8) {
+                        else if (levelButtons.indexOf(button) > 4 && levelButtons.indexOf(v) < 8) {
                             i = new Intent(getApplicationContext(), SixFieldsGame.class);
                         }
                         else {
@@ -84,8 +86,8 @@ public class LevelsMenu extends AppCompatActivity {
                         }
 
                     i.putExtra("categoryName", categoryName); // przesłanie informacji o wybranej kategorii
-                    if (levelButtons.indexOf(v) != 0) {
-                        i.putExtra("whichLevel", levelButtons.indexOf(v)); // przesłanie informacji który to poziom
+                    if (levelButtons.indexOf(button) != 0) {
+                        i.putExtra("whichLevel", levelButtons.indexOf(button)); // przesłanie informacji który to poziom
                     }
                         startActivity(i);
 

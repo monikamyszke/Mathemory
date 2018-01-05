@@ -69,7 +69,6 @@ public class ExampleFractions1 extends AppCompatActivity implements View.OnTouch
                 Intent i;
                 i = new Intent(getApplicationContext(), ExampleFractions2.class);
                 i.putExtra("categoryName", categoryName);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
         });

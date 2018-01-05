@@ -1,3 +1,63 @@
 <resources>
     <string name="app_name">Mathemory</string>
+    <string name="categories">Kategorie nauki:</string>
+    <string name="example">P</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="seven">7</string>
+    <string name="eight">8</string>
+    <string name="nine">9</string>
+    <string name="ten">10</string>
+
+    <string name="even">Liczby parzyste</string>
+    <string name="eventext">Liczba parzysta to taka liczba, którą można podzielić przez 2 bez reszty.</string>
+    <string name="odd">Liczby nieparzyste</string>
+    <string name="oddtext">Liczba nieparzysta to taka liczba, którą przy dzieleniu przez 2 daje resztę 1.</string>
+    <string name="rest">reszta:</string>
+
+    <string name="equal">=</string>
+    <string name="divide">:</string>
+
+    <string name="div3">Podzielność przez 3</string>
+    <string name="div3text">Liczba jest podzielna przez 3, jeżeli suma jej cyfr tworzy liczbę podzielną przez 3. Przeciągnij pola z cyframi pomiędzy znak +, aby otrzymać wynik ich dodawania.</string>
+    <string name="plus">+</string>
+    <string name="div3text2">jest podzielne przez 3, zatem</string>
+    <string name="div3text3">jest także podzielne przez 3.</string>
+    <string name="number">liczba:</string>
+
+    <string name="div5">Podzielność przez 5</string>
+    <string name="div5text">Liczba jest podzielna przez 5, jeżeli jej ostatnią cyfrą jest 0 lub 5.</string>
+    <string name="div5examples">Przykłady liczb podzielnych przez 5:</string>
+    <string name="fiftyfive">55</string>
+    <string name="eightyfive">85</string>
+    <string name="sixty">60</string>
+    <string name="thirtyfive">35</string>
+
+    <string name="prime">Liczby pierwsze</string>
+    <string name="primetext">Liczba pierwsza to taka liczba większa od 1, która dzieli się tylko przez 1 i przez samą siebie.</string>
+    <string name="composite">Liczby złożone</string>
+    <string name="compositetext">Liczba złożona to liczba większa od 1, która ma więcej niż dwa dzielniki. </string>
+    <string name="seventeen">17</string>
+    <string name="sixtyone">61</string>
+    <string name="twentyfive">25</string>
+    
+    <string name="proper">Ułamki właściwe</string>
+    <string name="propertext">Ułamek jest ułamkiem właściwym, jeżeli jego licznik jest mniejszy od mianownika. Przeciągnij pola z liczbami w odpowiednie miejsca tak, aby utworzyć ułamek właściwy. </string>
+
+    <string name="improper">Ułamki niewłaściwe</string>
+    <string name="impropertext">Ułamek jest ułamkiem niewłaściwym, jeżeli jego licznik jest większy od mianownika. Przeciągnij pola z liczbami w odpowiednie miejsca tak, aby utworzyć ułamek niewłaściwy. </string>
+
+
+    <string name="play">Graj</string>
+
+    <string name="next">Dalej</string>
+    <string name="repeat">Powtórz</string>
+    <string name="result">Twój wynik:</string>
+    <string name="menu">MENU</string>
+    <string name="tryagain">Spróbuj ponownie</string>
+    <string name="mistakes">Nie udało się, popełniłeś 3 błędy :(</string>
 </resources>

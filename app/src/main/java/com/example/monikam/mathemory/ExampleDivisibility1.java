@@ -10,8 +10,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -85,7 +83,6 @@ public class ExampleDivisibility1 extends AppCompatActivity implements View.OnTo
                 Intent i;
                 i = new Intent(getApplicationContext(), ExampleDivisibility2.class);
                 i.putExtra("categoryName", categoryName);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
         });
@@ -154,7 +151,6 @@ public class ExampleDivisibility1 extends AppCompatActivity implements View.OnTo
         }
         return true;
     }
-
 
 
     @Override

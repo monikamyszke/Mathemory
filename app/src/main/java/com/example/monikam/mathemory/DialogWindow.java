@@ -115,7 +115,6 @@ class DialogWindow extends Dialog implements android.view.View.OnClickListener {
             case R.id.menu:
                 i = new Intent(context, LevelsMenu.class);
                 break;
-
         }
 
             assert i != null;

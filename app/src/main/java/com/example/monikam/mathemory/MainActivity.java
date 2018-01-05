@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import java.io.File;
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         ImageButton cat4 = (ImageButton) findViewById(R.id.cat4);
 
         // przypisanie przyciskom odpowiednich nazw kategorii
-        final Hashtable<ImageButton, String> categories = new Hashtable<ImageButton, String> ();
+        final Hashtable<ImageButton, String> categories = new Hashtable<> ();
             categories.put(cat1, "Parzystość liczb");
             categories.put(cat2, "Podzielność liczb");
             categories.put(cat3, "Liczby pierwsze i złożone");

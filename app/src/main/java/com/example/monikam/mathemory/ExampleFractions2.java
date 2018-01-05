@@ -69,7 +69,6 @@ public class ExampleFractions2 extends AppCompatActivity implements View.OnTouch
                 i = new Intent(getApplicationContext(), NineFieldsGame.class);
                 i.putExtra("categoryName", categoryName);
                 i.putExtra("whichLevel", 1);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
         });
