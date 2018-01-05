@@ -94,5 +94,22 @@ class Parity extends CategoryClass {
 
         return false;
     }
+
+    public int generateForExample(boolean parity) {
+        int number, rest;
+
+        if (parity) {
+            rest = 0;
+        }
+        else {
+            rest = 1;
+        }
+
+        do {
+            number = 12 + (int)(Math.random() * ((99 - 12) + 1)); // generowanie liczby podzielnej przez 2 z zakresu 12-99
+        } while ( number % 2 != rest);
+
+        return number;
+    }
 }
 

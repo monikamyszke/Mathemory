@@ -11,12 +11,11 @@ import android.widget.TextView;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class ExampleParity extends AppCompatActivity {
+public class ExamplePrimeAndComposite extends AppCompatActivity {
 
     String categoryName;
-    CategoryClass category;
     Button next;
-    Button num1, result, num2, result2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,28 +25,13 @@ public class ExampleParity extends AppCompatActivity {
                 .build()
         );
 
-        setContentView(R.layout.activity_example_parity);
+        setContentView(R.layout.activity_example_prime_and_composite);
 
         categoryName = getIntent().getStringExtra("categoryName");
-        TextView cat_name = (TextView) findViewById(R.id.t1);
-        cat_name.setText(categoryName);
-
-        category = Game.getCategory(categoryName);
-
-        num1 = (Button) findViewById(R.id.number1);
-        result = (Button) findViewById(R.id.result);
-        num2 = (Button) findViewById(R.id.number3);
-        result2 = (Button) findViewById(R.id.result2);
+        TextView category = (TextView) findViewById(R.id.t1);
+        category.setText(categoryName);
 
         next = (Button)  findViewById(R.id.next);
-
-        int number = ((Parity) category).generateForExample(true);
-        num1.setText(String.valueOf(number));
-        result.setText(String.valueOf(number / 2));
-
-        number = ((Parity) category).generateForExample(false);
-        num2.setText(String.valueOf(number));
-        result2.setText(String.valueOf(number / 2));
     }
 
     @Override

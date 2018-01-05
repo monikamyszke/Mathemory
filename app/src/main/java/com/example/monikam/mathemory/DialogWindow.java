@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-
 class DialogWindow extends Dialog implements android.view.View.OnClickListener {
 
     private Button repeatLevel;
@@ -116,8 +115,10 @@ class DialogWindow extends Dialog implements android.view.View.OnClickListener {
             case R.id.menu:
                 i = new Intent(context, LevelsMenu.class);
                 break;
+
         }
 
+            assert i != null;
             i.putExtra("categoryName", categoryName);
             context.startActivity(i);
             ((Activity) context).finish();

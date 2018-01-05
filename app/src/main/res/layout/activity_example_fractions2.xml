@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/logo_background"
-    tools:context="com.example.monikam.mathemory.ExampleDivisibility2">
+    tools:context="com.example.monikam.mathemory.ExampleFractions2">
 
     <TextView
         android:id="@+id/t1"
@@ -27,7 +27,7 @@
         android:id="@+id/t2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Podzielność przez 5"
+        android:text="Ułamki niewłaściwe"
         android:textSize="20dp"
         android:textColor="@color/white"
         android:layout_marginRight="8dp"
@@ -42,9 +42,9 @@
 
     <TextView
         android:id="@+id/t3"
-        android:layout_width="334dp"
-        android:layout_height="77dp"
-        android:text="Liczba jest podzielna przez 5, jeżeli jej ostatnią cyfrą jest 0 lub 5. "
+        android:layout_width="337dp"
+        android:layout_height="149dp"
+        android:text="Ułamek jest ułamkiem niewłaściwym, jeżeli jego licznik jest większy od mianownika. Przeciągnij pola z liczbami w odpowiednie miejsca tak, aby utworzyć ułamek niewłaściwy. "
         android:textSize="20dp"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -57,7 +57,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/t2"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintVertical_bias="0.044" />
+        app:layout_constraintVertical_bias="0.045" />
 
     <Button
         android:id="@+id/next"
@@ -72,92 +72,71 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
-    <TextView
-        android:id="@+id/t4"
-        android:layout_width="258dp"
-        android:layout_height="62dp"
-        android:text="Przykłady liczb podzielnych przez 5:"
-        android:textSize="20dp"
-        android:textAlignment="center"
+    <Button
+        android:id="@+id/number1"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/number_icon"
         android:textColor="@color/white"
+        android:textSize="40dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/number2"
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="0.772"
+        android:layout_marginTop="-5dp"
+        app:layout_constraintTop_toBottomOf="@+id/t3" />
+
+    <Button
+        android:id="@+id/number2"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/number_icon"
+        android:textColor="@color/white"
+        android:textSize="40dp"
+        android:layout_marginRight="92dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="-5dp"
+        app:layout_constraintTop_toBottomOf="@+id/t3" />
+
+    <ImageView
+        android:id="@+id/box1"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:srcCompat="@drawable/square"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/t3"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
-        app:layout_constraintVertical_bias="0.081" />
+        app:layout_constraintBottom_toTopOf="@+id/box2"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintVertical_bias="0.981" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@drawable/number_icon"
-        android:text="10"
-        android:textColor="@color/white"
-        android:textSize="25dp"
+    <ImageView
+        android:id="@+id/box2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:srcCompat="@drawable/square"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/button5"
         android:layout_marginRight="8dp"
-        app:layout_constraintHorizontal_bias="0.719"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="78dp" />
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@drawable/number_icon"
-        android:text="55"
-        android:textColor="@color/white"
-        android:textSize="25dp"
+        android:layout_marginBottom="41dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="105dp"
+        android:layout_height="11dp"
+        app:srcCompat="@drawable/line"
+        app:layout_constraintBottom_toBottomOf="@+id/box2"
+        android:layout_marginBottom="82dp"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/button3"
         android:layout_marginRight="8dp"
-        app:layout_constraintHorizontal_bias="0.522"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="173dp" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@drawable/number_icon"
-        android:text="85"
-        android:textColor="@color/white"
-        android:textSize="25dp"
-        app:layout_constraintRight_toLeftOf="@+id/button4"
-        android:layout_marginRight="41dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="173dp" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@drawable/number_icon"
-        android:text="60"
-        android:textColor="@color/white"
-        android:textSize="25dp"
-        android:layout_marginRight="34dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="173dp" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@drawable/number_icon"
-        android:text="35"
-        android:textColor="@color/white"
-        android:textSize="25dp"
-        android:layout_marginRight="90dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="78dp" />
+        app:layout_constraintHorizontal_bias="0.502" />
 
 </android.support.constraint.ConstraintLayout>

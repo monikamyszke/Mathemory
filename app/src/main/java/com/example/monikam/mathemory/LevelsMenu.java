@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,7 +37,7 @@ public class LevelsMenu extends AppCompatActivity {
 
         category = Game.getCategory(categoryName);
 
-        final List<Button> levelButtons = new ArrayList<Button>(); // lista z przyciskami przykładu i poziomów 1-10
+        final List<Button> levelButtons = new ArrayList<>(); // lista z przyciskami przykładu i poziomów 1-10
 
         Button e = (Button) findViewById(R.id.example);
         levelButtons.add(e);
@@ -56,11 +55,23 @@ public class LevelsMenu extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     
-                        Intent i = null;
+                        Intent i;
 
                         // przyporządkowanie poziomom odpowiednich plansz
                         if (levelButtons.indexOf(v) == 0) {
-                            i = new Intent(getApplicationContext(), ExampleDivisibility1.class);
+
+                            if (categoryName.equals("Parzystość liczb")) {
+                                i = new Intent(getApplicationContext(), ExampleParity.class);
+                            }
+                            else if (categoryName.equals("Podzielność liczb")) {
+                                i = new Intent(getApplicationContext(), ExampleDivisibility1.class);
+                            }
+                            else if (categoryName.equals("Liczby pierwsze i złożone")) {
+                                i = new Intent(getApplicationContext(), ExamplePrimeAndComposite.class);
+                            }
+                            else {
+                                i = new Intent(getApplicationContext(), ExampleFractions1.class);
+                            }
                         }
                         else if (levelButtons.indexOf(v) > 1 && levelButtons.indexOf(v) < 5) {
                             i = new Intent(getApplicationContext(), FourFieldsGame.class);

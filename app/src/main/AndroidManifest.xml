@@ -43,9 +43,20 @@
         <activity
             android:name=".ExampleDivisibility2"
             android:theme="@style/AppTheme" />
-
-        <activity android:name=".ExampleParity"
+        <activity
+            android:name=".ExampleParity"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ExamplePrimeAndComposite"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".ExampleFractions1"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ExampleFractions2"
+            android:theme="@style/AppTheme" />
+
     </application>
 
 </manifest>

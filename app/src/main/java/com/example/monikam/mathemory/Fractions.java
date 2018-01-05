@@ -95,4 +95,18 @@ class Fractions extends CategoryClass {
 
         return false;
     }
+
+    int[] generateForExample() {
+        int[] fraction = new int[2];
+
+        do {
+            for (int i = 0; i < 2; i ++) {
+                fraction[i] = 2 + (int) (Math.random() * ((99 - 2) + 1)); // generowanie liczb z zakresu 2 - 99
+            }
+        }
+        while (fraction[0] > fraction[1]);
+
+
+        return fraction;
+    }
 }

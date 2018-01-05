@@ -97,7 +97,7 @@ class Divisibility extends CategoryClass {
         return false;
     }
 
-    public int generateForExample() {
+    int generateForExample() {
         int divisible;
 
         do {
