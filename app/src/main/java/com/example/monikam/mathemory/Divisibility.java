@@ -96,4 +96,15 @@ class Divisibility extends CategoryClass {
 
         return false;
     }
+
+    public int generateForExample() {
+        int divisible;
+
+        do {
+            divisible = 12 + (int)(Math.random() * ((99 - 12) + 1)); // generowanie liczby podzielnej przez 3 z zakresu 12-99
+        }
+        while ( divisible % 3 != 0);
+
+        return divisible;
+    }
 }

@@ -41,7 +41,7 @@ public class ExampleDivisibility2 extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent();
+                Intent i;
                 i = new Intent(getApplicationContext(), NineFieldsGame.class);
                 i.putExtra("categoryName", categoryName);
                 i.putExtra("whichLevel", 1);

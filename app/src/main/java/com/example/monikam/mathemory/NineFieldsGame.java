@@ -34,8 +34,7 @@ public class NineFieldsGame extends AppCompatActivity {
     Vibrator vib;
     MediaPlayer sound;
     String categoryName;
-    int whichLevel;
-    TextView task;
+    int whichLevel;    TextView task;
     TextView timer;
     int stars = 3;
     Context context = this;
