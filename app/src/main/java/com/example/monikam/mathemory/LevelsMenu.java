@@ -14,11 +14,20 @@ import java.util.ArrayList;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
+/**
+ * Menu z poziomami
+ */
 public class LevelsMenu extends AppCompatActivity {
 
-    CategoryClass category;
-    String categoryName;
+    /**Obiekt bieżącej kategorii*/
+    private CategoryClass category;
+    /**Nazwa kategorii*/
+    private String categoryName;
 
+    /**
+     * Funkcja wywoływana, gdy aktywność jest tworzona
+     * @param savedInstanceState obiekt przechowujący poprzedni stan aktywności
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +106,9 @@ public class LevelsMenu extends AppCompatActivity {
 
     }
 
+    /**
+     * Funkcja wywoływana przy wznawianiu aktywności
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -133,6 +145,9 @@ public class LevelsMenu extends AppCompatActivity {
         }
     }
 
+    /**
+     * Funkcja załączająca niestandardową czcionkę
+     */
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));

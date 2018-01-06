@@ -3,11 +3,17 @@ package com.example.monikam.mathemory;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Klasa implementująca metody dotyczące rozgrywki w kategorii Parzystość
+ */
 class Parity extends CategoryClass {
 
+    /**Tablica wygenerowanych liczb*/
     private int[] generated;
+    /**Instrukcja wyświetlana na górze ekranu*/
     private String instruction;
-    private int counter; // zmienna do zliczania liczb spełniających warunek zadania
+    /**Zmienna do zliczania liczb spełniających warunek zadania*/
+    private int counter;
 
     @Override
     public String getInstruction(int curr_level) {
@@ -75,7 +81,6 @@ class Parity extends CategoryClass {
         return counter;
     }
 
-
     @Override
     public boolean check(int sel_field) {
 
@@ -93,6 +98,10 @@ class Parity extends CategoryClass {
         return false;
     }
 
+    /**
+     * Funkcja generująca liczbę dla przykładu
+     * @return liczba wykorzystana w przykładzie
+     */
     int generateForExample(boolean parity) {
         int number, rest;
 
@@ -104,8 +113,9 @@ class Parity extends CategoryClass {
         }
 
         do {
-            number = 12 + (int)(Math.random() * ((99 - 12) + 1)); // generowanie liczby podzielnej przez 2 z zakresu 12-99
-        } while ( number % 2 != rest);
+            number = 10 + (int)(Math.random() * ((99 - 10) + 1)); // generowanie liczby podzielnej przez 2 z zakresu 10-99
+        }
+        while ( number % 2 != rest);
 
         return number;
     }

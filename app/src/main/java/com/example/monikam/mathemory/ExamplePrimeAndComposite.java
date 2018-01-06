@@ -11,11 +11,20 @@ import android.widget.TextView;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
+/**
+ * Liczby pierwsze i złożone - przykład
+ */
 public class ExamplePrimeAndComposite extends AppCompatActivity {
 
-    String categoryName;
-    Button next;
+    /**Nazwa kategorii*/
+    private String categoryName;
+    /**Przycisk przejścia do gry*/
+    private Button next;
 
+    /**
+     * Funkcja wywoływana, gdy aktywność jest tworzona
+     * @param savedInstanceState obiekt przechowujący poprzedni stan aktywności
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +43,9 @@ public class ExamplePrimeAndComposite extends AppCompatActivity {
         next = (Button)  findViewById(R.id.next);
     }
 
+    /**
+     * Funkcja wywoływana przy wznawianiu aktywności
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -51,6 +63,9 @@ public class ExamplePrimeAndComposite extends AppCompatActivity {
 
     }
 
+    /**
+     * Funkcja załączająca niestandardową czcionkę
+     */
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));

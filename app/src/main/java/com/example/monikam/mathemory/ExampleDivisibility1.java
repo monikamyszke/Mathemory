@@ -13,27 +13,48 @@ import android.widget.TextView;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
+/**
+ * Podzielność przez 3 - przykład
+ */
 public class ExampleDivisibility1 extends AppCompatActivity implements View.OnTouchListener{
 
-    CategoryClass category;
-    Button num1;
-    Button num2;
-    int number;
-    int number1;
-    int number2;
-    Button sum;
-    Button next;
-    String categoryName;
-    float dx;
-    float dy;
-    float startX; // współrzędne punktu początkowego pól do przeciągnięcia
-    float startY;
-    boolean full1 = false, full2 = false; // zmienne reprezentujące zawartość pola do upuszczania elementów
+    /**Przycisk z liczbą dziesiątek*/
+    private Button num1;
+    /**Przycisk z liczbą jedności*/
+    private Button num2;
+    /**Liczba podzielna przez 3*/
+    private int number;
+    /**Liczba dziesiątek*/
+    private int number1;
+    /**Liczba jedności*/
+    private int number2;
+    /**Przycisk z sumą number1+number2*/
+    private Button sum;
+    /**Przycisk przejścia dalej*/
+    private Button next;
+    /**Nazwa kategorii*/
+    private String categoryName;
+    /**Przemieszczenie wzdłuż osi X*/
+    private float dx;
+    /**Przemieszczenie wzdłuż osi Y*/
+    private float dy;
+    /**Współrzędne X punktu początkowego pól do przeciągnięcia*/
+    private float startX;
+    /**Współrzędne Y punktu początkowego pól do przeciągnięcia*/
+    private float startY;
+    /**Zmienna reprezentująca zawartość pola 1 do upuszczania elementów*/
+    private boolean full1 = false;
+    /**Zmienna reprezentująca zawartość pola 2 do upuszczania elementów*/
+    private boolean full2 = false;
+    /**Pole tekstowe pojawiające się po przeciągnięciu*/
+    private TextView text1;
+    /**Pole tekstowe pojawiające się po przeciągnięciu*/
+    private TextView text2;
 
-    TextView text1;
-    TextView text2;
-
-
+    /**
+     * Funkcja wywoływana, gdy aktywność jest tworzona
+     * @param savedInstanceState obiekt przechowujący poprzedni stan aktywności
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +69,8 @@ public class ExampleDivisibility1 extends AppCompatActivity implements View.OnTo
         categoryName = getIntent().getStringExtra("categoryName");
         TextView cat_name = (TextView) findViewById(R.id.t1);
         cat_name.setText(categoryName);
-        category = Game.getCategory(categoryName);
+
+        CategoryClass category = Game.getCategory(categoryName);
 
         num1 = (Button) findViewById(R.id.number1);
         num2 = (Button) findViewById(R.id.number2);
@@ -60,6 +82,7 @@ public class ExampleDivisibility1 extends AppCompatActivity implements View.OnTo
         text2 = (TextView) findViewById(R.id.textView9);
         text2.setVisibility(View.INVISIBLE);
 
+        assert category != null;
         number = ((Divisibility) category).generateForExample(); // generowanie liczby podzielnej przez 3
         number1 = (number / 10);
         number2 = (number % 10);
@@ -70,6 +93,9 @@ public class ExampleDivisibility1 extends AppCompatActivity implements View.OnTo
         value.setText(String.valueOf(number));
     }
 
+    /**
+     * Funkcja wywoływana przy wznawianiu aktywności
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -89,6 +115,12 @@ public class ExampleDivisibility1 extends AppCompatActivity implements View.OnTo
 
     }
 
+    /**
+     * Nadpisanie funkcji odpowiedzialnej za przesuwanie elementu
+     * @param v przesuwany element
+     * @param event obiekt przechowujący informację o akcji wykonywanej na elemencie v
+     * @return true, jeżeli akcja została zakończona
+     */
     @Override
     public boolean onTouch(View v, MotionEvent event) {
 
@@ -152,7 +184,9 @@ public class ExampleDivisibility1 extends AppCompatActivity implements View.OnTo
         return true;
     }
 
-
+    /**
+     * Funkcja załączająca niestandardową czcionkę
+     */
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));

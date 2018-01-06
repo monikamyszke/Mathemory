@@ -3,10 +3,16 @@ package com.example.monikam.mathemory;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Klasa implementująca metody dotyczące rozgrywki w kategorii Podzielność
+ */
 class Divisibility extends CategoryClass {
 
+    /**Tablica wygenerowanych liczb*/
     private int[] generated;
+    /**Instrukcja wyświetlana na górze ekranu*/
     private String instruction;
+    /**Zmienna do zliczania liczb spełniających warunek zadania*/
     private int counter;
 
     @Override
@@ -97,6 +103,10 @@ class Divisibility extends CategoryClass {
         return false;
     }
 
+    /**
+     * Funkcja generująca liczbę dla przykładu podzielności przez 3
+     * @return liczba wykorzystana w przykładzie
+     */
     int generateForExample() {
         int divisible;
 

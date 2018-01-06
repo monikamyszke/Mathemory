@@ -16,7 +16,7 @@
     <string name="even">Liczby parzyste</string>
     <string name="eventext">Liczba parzysta to taka liczba, którą można podzielić przez 2 bez reszty.</string>
     <string name="odd">Liczby nieparzyste</string>
-    <string name="oddtext">Liczba nieparzysta to taka liczba, którą przy dzieleniu przez 2 daje resztę 1.</string>
+    <string name="oddtext">Liczba nieparzysta to taka liczba, która przy dzieleniu przez 2 daje resztę 1.</string>
     <string name="rest">reszta:</string>
 
     <string name="equal">=</string>

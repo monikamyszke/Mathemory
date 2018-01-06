@@ -1,10 +1,19 @@
 package com.example.monikam.mathemory;
 
+/**
+ * Klasa reprezentująca ułamek
+ */
 class IntegerPair {
+    /**Licznik ułamka*/
     int numerator;
+    /**Mianownik ułamka*/
     int denominator;
 
-// sprawdzanie czy ułamki są takie same
+    /**
+     * Nadpisanie metody sprawdzającej, czy obiekty (tu ułamki) są takie same
+     * @param obj obiekt klasy Object
+     * @return true, jeżeli obiekty są takie same
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof IntegerPair) {

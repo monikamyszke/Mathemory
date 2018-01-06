@@ -13,21 +13,32 @@ import android.widget.TextView;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
+/**
+ * Ułamki właściwe - przykład
+ */
 public class ExampleFractions1 extends AppCompatActivity implements View.OnTouchListener {
 
-    CategoryClass category;
-    String categoryName;
-    Button num1;
-    Button num2;
-    Button next;
-    int number1;
-    int number2;
-    int[] fraction;
-    float dx;
-    float dy;
-    float startX;
-    float startY;
+    /**Nazwa kategorii*/
+    private String categoryName;
+    /**Pole z licznikiem*/
+    private Button num1;
+    /**Pole z mianownikiem*/
+    private Button num2;
+    /**Przycisk przejścia dalej*/
+    private Button next;
+    /**Przemieszczenie wzdłuż osi X*/
+    private float dx;
+    /**Przemieszczenie wzdłuż osi Y*/
+    private float dy;
+    /**Współrzędne X punktu początkowego pól do przeciągnięcia*/
+    private float startX;
+    /**Współrzędne Y punktu początkowego pól do przeciągnięcia*/
+    private float startY;
 
+    /**
+     * Funkcja wywoływana, gdy aktywność jest tworzona
+     * @param savedInstanceState obiekt przechowujący poprzedni stan aktywności
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,20 +53,23 @@ public class ExampleFractions1 extends AppCompatActivity implements View.OnTouch
         categoryName = getIntent().getStringExtra("categoryName");
         TextView cat_name = (TextView) findViewById(R.id.t1);
         cat_name.setText(categoryName);
-
-        category = Game.getCategory(categoryName);
+        CategoryClass category = Game.getCategory(categoryName);
 
         num1 = (Button) findViewById(R.id.number1);
         num2 = (Button) findViewById(R.id.number2);
         next = (Button)  findViewById(R.id.next);
 
-        fraction = ((Fractions) category).generateForExample(); // generowanie liczby podzielnej przez 3
-        number1 = fraction[0];
-        number2 = fraction[1];
+        assert category != null;
+        int[] fraction = ((Fractions) category).generateForExample();
+        int number1 = fraction[0];
+        int number2 = fraction[1];
         num1.setText(String.valueOf(number1));
         num2.setText(String.valueOf(number2));
     }
 
+    /**
+     * Funkcja wywoływana przy wznawianiu aktywności
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -75,6 +89,12 @@ public class ExampleFractions1 extends AppCompatActivity implements View.OnTouch
 
     }
 
+    /**
+     * Nadpisanie funkcji odpowiedzialnej za przesuwanie elementu
+     * @param v przesuwany element
+     * @param event obiekt przechowujący informację o akcji wykonywanej na elemencie v
+     * @return true, jeżeli akcja została zakończona
+     */
     @Override
     public boolean onTouch(View v, MotionEvent event) {
 
@@ -129,6 +149,9 @@ public class ExampleFractions1 extends AppCompatActivity implements View.OnTouch
         return true;
     }
 
+    /**
+     * Funkcja załączająca niestandardową czcionkę
+     */
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));

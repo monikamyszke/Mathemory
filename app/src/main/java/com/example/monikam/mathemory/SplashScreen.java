@@ -9,8 +9,15 @@ import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+/**
+ * Ekran startowy aplikacji
+ */
 public class SplashScreen extends AppCompatActivity {
 
+    /**
+     * Funkcja wywoływana, gdy aktywność jest tworzona
+     * @param savedInstanceState obiekt przechowujący poprzedni stan aktywności
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

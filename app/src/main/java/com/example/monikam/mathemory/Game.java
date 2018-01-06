@@ -7,19 +7,35 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/**
+ * Klasa reprezentująca właściwą grę; obiekt tej klasy może zostać utworzony tylko 1 raz, wewnątrz tej klasy
+ */
 class Game {
 
+    /**Obiekt klasy Game*/
     private static Game game;
+    /**Plik do zapisu i odczytu danych*/
     private File save;
+    /**Obiekt klasy Parity*/
     private Parity parity;
+    /**Obiekt klasy Divisibility*/
     private Divisibility divisibility;
+    /**Obiekt klasy PrimeAndComposite*/
     private PrimeAndComposite primeAndComposite;
+    /**Obiekt klasy Fractions*/
     private Fractions fractions;
 
-    private static int[] stars = new int[40]; // tablica przechowująca ilośc gwiazdek
-    static boolean[] unlockedLevels = new boolean[40]; // tablica przechowująca informacje o blokadzie poziomów
-    static boolean[] unlockedCategories = new boolean[4]; // tablica przechowująca informacje o blokadzie kategorii
+    /**Tablica przechowująca ilośc gwiazdek*/
+    private static int[] stars = new int[40];
+    /**Tablica przechowująca informacje o blokadzie poziomów*/
+    static boolean[] unlockedLevels = new boolean[40];
+    /**Tablica przechowująca informacje o blokadzie kategorii*/
+    static boolean[] unlockedCategories = new boolean[4];
 
+   /**
+    * Funkcja wywoływana na początku gry; tworzy obiekt Game, jeśli nie istnieje i odczytuje dane z pliku
+    * @param save plik z danymi do wczytania
+    */
     static void initGame(File save) { // obiekt klasy Game może być utworzony tylko 1 raz
         if (game == null) {
             game = new Game();
@@ -27,32 +43,43 @@ class Game {
             game.readFromFile();
         }
     }
-// obiekt klasy Game może być utworzony tylko wewnątrz tej klasy
-    private Game() {
+    /**
+     * Konstruktor obiektu klasy Game
+     */
+    private Game() { // obiekt klasy Game może być utworzony tylko wewnątrz tej klasy
         this.parity = new Parity();
         this.divisibility = new Divisibility();
         this.primeAndComposite = new PrimeAndComposite();
         this.fractions = new Fractions();
     }
 
+    /**
+     * Funkcja zwracająca obiekt danej kategorii w zależności od jej nazwy
+     * @param category nazwa kategorii
+     * @return pole klasy Game reprezentujące odpowiednią kategorię
+     */
     static CategoryClass getCategory(String category) {
-        if (category.equals("Parzystość liczb")) {
-            return game.parity;
+        switch (category) {
+            case "Parzystość liczb":
+                return game.parity;
+            case "Podzielność liczb":
+                return game.divisibility;
+            case "Liczby pierwsze i złożone":
+                return game.primeAndComposite;
+            case "Ułamki właściwe i niewłaściwe":
+                return game.fractions;
+            default:
+                return null;
         }
-        else if (category.equals("Podzielność liczb")) {
-            return game.divisibility;
-        }
-        else if (category.equals("Liczby pierwsze i złożone")) {
-            return game.primeAndComposite;
-        }
-        else if (category.equals("Ułamki właściwe i niewłaściwe")) {
-            return game.fractions;
-        }
-        else
-            return null;
 
     }
 
+    /**
+     * Funkcja zapisująca dane po ukończeniu poziomu i odblokowująca kolejny poziom/kategorię
+     * @param category bieżąca kategoria
+     * @param whichLevel aktualny poziom
+     * @param star liczba zdobytych gwiazdek
+     */
     static void completeLevel(CategoryClass category, int whichLevel, int star) {
         int p = getElement(category);
         if (star > stars[whichLevel + p - 1]) { // sprawdzenie czy poprawiono wynik
@@ -68,7 +95,12 @@ class Game {
         game.saveToFile(); // zapis danych do pliku
     }
 
-    // funkcja zwracająca liczbę gwiazdek przyznaną za dany poziom w kategorii
+    /**
+     * Funkcja zwracająca liczbę gwiazdek przyznaną za dany poziom w kategorii
+     * @param category bieżąca kategoria
+     * @param whichLevel aktualny poziom
+     * @return ilość przyznanych gwiazdek
+     */
     static int getStars(CategoryClass category, int whichLevel ) {
         int starsAmount;
         int p = getElement(category);
@@ -76,7 +108,12 @@ class Game {
         return starsAmount;
     }
 
-    // funkcja zwracająca stan poziomu (odblokowany/zablokowany)
+    /**
+     * Funkcja zwracająca stan poziomu (odblokowany/zablokowany)
+     * @param category bieżąca kategoria
+     * @param whichLevel aktualny poziom
+     * @return true, jeżeli poziom jest odblokowany
+     */
     static boolean getLevelStates(CategoryClass category, int whichLevel ) {
         boolean levelState;
         int p = getElement(category);
@@ -84,14 +121,22 @@ class Game {
         return levelState;
     }
 
-    // funkcja zwracająca stan kategorii (odblokowany/zablokowany)
+    /**
+     * Funkcja zwracająca stan kategorii (odblokowana/zablokowana)
+     * @param category bieżąca kategoria
+     * @return true, jeżeli kategoria jest odblokowana
+     */
     static boolean getCategoryStates(int category) {
         boolean categoryState;
         categoryState = unlockedCategories[category - 1];
         return categoryState;
     }
 
-    // funkcja zwracająca zmienną pomocniczą do definiowania poziomów kategorii w tablicy
+    /**
+     * Funkcja zwracająca zmienną pomocniczą do definiowania poziomów kategorii w tablicy
+     * @param category bieżąca kategoria
+     * @return zmienna pomocnicza do określania pozycji w tablicy
+     */
     private static int getElement(CategoryClass category) {
         int element;
         if (category == game.parity) {
@@ -110,7 +155,9 @@ class Game {
         return element;
     }
 
-    // zapis danych do pliku
+    /**
+     * Funkcja zapisująca dane gry do pliku
+     */
     private void saveToFile() {
         try {
             File file = save;
@@ -132,7 +179,9 @@ class Game {
 
    }
 
-   // odczyt danych z pliku
+    /**
+     * Funkcja odczytująca dane gry z pliku
+     */
    private void readFromFile() {
        try {
            File file = save;
@@ -150,7 +199,9 @@ class Game {
        }
 
    }
-
+    /**
+     * Funkcja zwracająca obiekt klasy Game
+     */
     public static Game getInstance() {
         return game;
     }

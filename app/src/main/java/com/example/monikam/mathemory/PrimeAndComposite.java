@@ -3,10 +3,16 @@ package com.example.monikam.mathemory;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Klasa implementująca metody dotyczące rozgrywki w kategorii Liczby pierwsze i złożone
+ */
 class PrimeAndComposite extends CategoryClass {
 
+    /**Tablica wygenerowanych liczb*/
     private int[] generated;
+    /**Instrukcja wyświetlana na górze ekranu*/
     private String instruction;
+    /**Zmienna do zliczania liczb spełniających warunek zadania*/
     private int counter;
 
     @Override
@@ -74,6 +80,11 @@ class PrimeAndComposite extends CategoryClass {
         return counter;
     }
 
+    /**
+     * Funkcja sprawdzająca, czy liczba jest pierwsza
+     * @param number wybrana liczba
+     * @return true, jeżeli liczba jest pierwsza
+     */
     private boolean checkIfPrime(int number) {
         for (int j = 2; j <= (number / 2); j++) {
             if (number % j == 0) {

@@ -3,10 +3,16 @@ package com.example.monikam.mathemory;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Klasa implementująca metody dotyczące rozgrywki w kategorii Ułamki właściwe i niewłaściwe
+ */
 class Fractions extends CategoryClass {
 
+    /**Instrukcja wyświetlana na górze ekranu*/
     private String instruction;
+    /**Lista do przechowywania par licznik, mianownik*/
     private List<IntegerPair> fractions;
+    /**Zmienna do zliczania liczb spełniających warunek zadania*/
     private int counter;
 
     @Override
@@ -96,6 +102,10 @@ class Fractions extends CategoryClass {
         return false;
     }
 
+    /**
+     * Funkcja generująca ułamek dla przykładu
+     * @return licznik i mianownik jako 2-elementowa tablica
+     */
     int[] generateForExample() {
         int[] fraction = new int[2];
 

@@ -18,24 +18,44 @@ import java.util.Random;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
+/**
+ * Plansza do gry z 6 polami
+ */
 public class SixFieldsGame extends AppCompatActivity {
 
-    int fieldsNumber = 6;
-    int counter;
-    int counterIncorrect;
-    String instruction;
-    String[] sGenerated;
-    List<Button> buttons = new ArrayList<>();
-    CategoryClass category;
-    Vibrator vib;
-    MediaPlayer sound;
-    String categoryName;
-    int whichLevel;
-    TextView task;
-    TextView timer;
-    int stars = 3;
-    Context context = this;
+    /**Liczba pól, które należy zaznaczyć*/
+    private int counter;
+    /**Licznik niepoprawnych odpowiedzi*/
+    private int counterIncorrect;
+    /**Polecenie*/
+    private String instruction;
+    /**Tablica wygenerowanych wartości*/
+    private String[] sGenerated;
+    /**Lista z przyciskami - polami*/
+    private List<Button> buttons = new ArrayList<>();
+    /**Kategoria gry*/
+    private CategoryClass category;
+    /**Obiekt reprezentujący wibracje*/
+    private Vibrator vib;
+    /**Obiekt reprezentujący dźwięk poprawnej odpowiedzi*/
+    private MediaPlayer sound;
+    /**Nazwa kategorii*/
+    private String categoryName;
+    /**Bieżący poziom*/
+    private int whichLevel;
+    /**Zmienna część polecenia*/
+    private TextView task;
+    /**Licznik czasu do zniknięcia liczb z pól*/
+    private TextView timer;
+    /**Maksymalna liczba gwiazdek*/
+    private int stars = 3;
+    /**Kontekst bieżącej aktywności*/
+    private Context context = this;
 
+    /**
+     * Funkcja wywoływana, gdy aktywność jest tworzona
+     * @param savedInstanceState obiekt przechowujący poprzedni stan aktywności
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +81,7 @@ public class SixFieldsGame extends AppCompatActivity {
 
         timer = (TextView) findViewById(R.id.timer);
 
+        int fieldsNumber = 6;
         sGenerated = category.generateNumbers(fieldsNumber, whichLevel);
         counter = category.getCounter();
         counterIncorrect = 0;
@@ -77,6 +98,9 @@ public class SixFieldsGame extends AppCompatActivity {
         }
     }
 
+    /**
+     * Funkcja wywoływana przy wznawianiu aktywności
+     */
     protected void onResume() {
         super.onResume();
 
@@ -177,7 +201,9 @@ public class SixFieldsGame extends AppCompatActivity {
         }
     }
 
-
+    /**
+     * Funkcja załączająca niestandardową czcionkę
+     */
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));

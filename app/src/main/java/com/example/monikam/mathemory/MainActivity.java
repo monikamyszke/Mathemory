@@ -13,8 +13,15 @@ import java.util.Hashtable;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
+/**
+ * Menu główne (z kategoriami)
+ */
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * Funkcja wywoływana, gdy aktywność jest tworzona
+     * @param savedInstanceState obiekt przechowujący poprzedni stan aktywności
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Funkcja wywoływana przy wznawianiu aktywności
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -76,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Funkcja załączająca niestandardową czcionkę
+     */
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));

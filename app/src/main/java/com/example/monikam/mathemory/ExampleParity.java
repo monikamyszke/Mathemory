@@ -11,12 +11,21 @@ import android.widget.TextView;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
+
+/**
+ * Parzystość liczb - przykład
+ */
 public class ExampleParity extends AppCompatActivity {
 
-    String categoryName;
-    CategoryClass category;
-    Button next;
-    Button num1, result, num2, result2;
+    /**Nazwa kategorii*/
+    private String categoryName;
+    /**Przycisk przejścia do gry*/
+    private Button next;
+
+    /**
+     * Funkcja wywoływana, gdy aktywność jest tworzona
+     * @param savedInstanceState obiekt przechowujący poprzedni stan aktywności
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,15 +41,17 @@ public class ExampleParity extends AppCompatActivity {
         TextView cat_name = (TextView) findViewById(R.id.t1);
         cat_name.setText(categoryName);
 
-        category = Game.getCategory(categoryName);
+        CategoryClass category = Game.getCategory(categoryName);
 
-        num1 = (Button) findViewById(R.id.number1);
-        result = (Button) findViewById(R.id.result);
-        num2 = (Button) findViewById(R.id.number3);
-        result2 = (Button) findViewById(R.id.result2);
+
+        Button num1 = (Button) findViewById(R.id.number1);
+        Button result = (Button) findViewById(R.id.result);
+        Button num2 = (Button) findViewById(R.id.number3);
+        Button result2 = (Button) findViewById(R.id.result2);
 
         next = (Button)  findViewById(R.id.next);
 
+        assert category != null;
         int number = ((Parity) category).generateForExample(true);
         num1.setText(String.valueOf(number));
         result.setText(String.valueOf(number / 2));
@@ -50,6 +61,9 @@ public class ExampleParity extends AppCompatActivity {
         result2.setText(String.valueOf(number / 2));
     }
 
+    /**
+     * Funkcja wywoływana przy wznawianiu aktywności
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -67,6 +81,9 @@ public class ExampleParity extends AppCompatActivity {
 
     }
 
+    /**
+     * Funkcja załączająca niestandardową czcionkę
+     */
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));

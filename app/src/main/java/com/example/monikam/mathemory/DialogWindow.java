@@ -8,16 +8,30 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+/**
+ * Okno dialogowe wyświetlane po każdym poziomie
+ */
 class DialogWindow extends Dialog implements android.view.View.OnClickListener {
 
+    /**Przycisk potwórzenia poziomu*/
     private Button repeatLevel;
+    /**Przycisk powrotu do menu z poziomami*/
     private Button menu;
+    /**Kontekst aktywności, w której wywoływane jest okno*/
     private Context context;
+    /**Kontekst okna dialogowego*/
     private DialogWindow dialogContext = this;
-
+    /**Nazwa kategorii*/
     private String categoryName;
+    /**Który poziom*/
     private int whichLevel;
-    //okienko po nieudanym przejściu poziomu
+
+    /**
+     * Konstruktor okienka po nieudanym przejściu poziomu
+     * @param context kontekst, na którym ma się pojawić okienko
+     * @param whichLevel który poziom
+     * @param categoryName nazwa kategorii
+     */
     DialogWindow(Context context, int whichLevel, String categoryName) {
         super(context);
         this.context = context;
@@ -32,13 +46,21 @@ class DialogWindow extends Dialog implements android.view.View.OnClickListener {
         this.setCancelable(false);
         this.setCanceledOnTouchOutside(false);
     }
-    //okienko po udanym przejściu poziomu
+
+    /**
+     * Konstruktor okienka po udanym przejściu poziomu
+     * @param context kontekst, na którym ma się pojawić okienko
+     * @param whichLevel który poziom
+     * @param categoryName nazwa kategorii
+     * @param stars liczba zdobytych gwiazdek
+     */
     DialogWindow(Context context, int whichLevel, String categoryName, int stars) {
         super(context);
         this.context = context;
         this.whichLevel = whichLevel;
         this.categoryName = categoryName;
         setContentView(R.layout.completed_level);
+
         Button nextLevel = (Button) findViewById(R.id.next);
         repeatLevel = (Button) findViewById(R.id.repeat);
         menu = (Button) findViewById(R.id.menu);
@@ -52,7 +74,11 @@ class DialogWindow extends Dialog implements android.view.View.OnClickListener {
         showStars(stars);
     }
 
-    // funkcja wyświetlająca zdobyte gwiazdki w okienku
+
+    /**
+     * Funkcja wyświetlająca zdobyte gwiazdki w oknie dialogowym
+     * @param stars liczba przyznanych gwiazdek
+     */
     private void showStars(int stars) {
         ImageView starsResult = (ImageView) findViewById(R.id.stars);
         switch (stars) {
@@ -67,7 +93,10 @@ class DialogWindow extends Dialog implements android.view.View.OnClickListener {
         }
     }
 
-    // opis zdarzeń po kliknięciu w 1 z 3 możliwych przycisków dostępnych w okienkach
+    /**
+     * Nadpisanie metody odpowiedzialnej za obsługę zdarzeń po kliknięciu w 1 z 3 możliwych przycisków
+     * @param v obiekt reprezentowany przez przycisk
+     */
     @Override
     public void onClick(View v) {
 
