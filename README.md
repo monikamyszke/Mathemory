@@ -10,6 +10,11 @@ Celem projektu jest stworzenie gry „MathEMORY”, która będzie umożliwiać 
 
 Użytkownik będzie się uczył na przykładach pojęć takich jak: liczby pierwsze, liczby parzyste, ułamki właściwe, niewłaściwe czy liczby podzielne przez 3. Następnie jego zadaniem będzie zaznaczenie na tzw. próbnej planszy wszystkich liczb spełniającch podany warunek. Jeżeli wykona ćwiczenie poprawnie, na kolejnych planszach liczby z pól będą znikać, a więc zadaniem gracza będzie nie tylko wyodrębnienie odpowiednich liczb z całego zbioru, ale także zapamiętanie i odtworzenie ich miejsca na planszy. Wraz z postępami gracza aktywować się będą kolejne poziomy trudności.
 
+## Krótki filmik z działania aplikacji
+
+[![MathEMORY - Android App](https://img.youtube.com/vi/O9MK0Qrl1ok/0.jpg)](https://www.youtube.com/watch?v=O9MK0Qrl1ok)
+
+
 ## Autor
 
-Monika 
+Monika Myszke
